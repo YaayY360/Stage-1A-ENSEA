@@ -1,0 +1,8 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "10172013-00011LF")(type "KiCad")(uri "/home/y360/Documents/Kicad-stuff/Librairies/10172013-00011LF")(options "")(descr ""))
+  (lib (name "CEG006900")(type "KiCad")(uri "/home/y360/Documents/Kicad-stuff/Librairies/CEG006900")(options "")(descr ""))
+  (lib (name "KPEG242-5V")(type "KiCad")(uri "/home/y360/Documents/Kicad-stuff/Librairies/KPEG242-5V")(options "")(descr ""))
+  (lib (name "L293D")(type "KiCad")(uri "/home/y360/Documents/Kicad-stuff/Librairies/L293D")(options "")(descr ""))
+  (lib (name "NUCLEO-F303K8")(type "KiCad")(uri "/home/y360/Documents/Kicad-stuff/Librairies/NUCLEO-F303K8")(options "")(descr ""))
+)

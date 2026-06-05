@@ -1,4 +1,11 @@
-3537806007883
+8879503158524
+10172013-00011LF
+AMPHENOL_10172013-00011LF
+
+
+0
+16
+16
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -2813,6 +2820,13 @@ speaker CUI
 0
 2
 2
+CEG006900
+MODULE_CEG006900
+
+
+0
+8
+8
 Calibration_Scale
 Gauge_10mm_Type1_CopperTop
 Gauge, Massstab, 10mm, CopperTop, Type 1,
@@ -70552,6 +70566,13 @@ solder jumper open
 0
 3
 3
+KPEG242-5V
+XDCR_KPEG242-5V
+
+
+0
+2
+2
 L293D
 DIP880W50P254L2000H510Q16
 
