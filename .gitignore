@@ -1,0 +1,91 @@
+# =========================
+# KiCad
+# =========================
+# Sauvegardes automatiques
+*~ 
+*.bak
+*.bck
+*.kicad_pcb-bak
+*.kicad_sch-bak
+
+# Dossiers temporaires KiCad 6/7/8
+*-backups/
+*-save-backups/
+fp-info-cache/
+sym-lib-table.bak
+fp-lib-table.bak
+
+# Fichiers de fabrication (optionnel selon si tu veux les versionner)
+*.gbr
+*.drl
+*.ps
+*.pdf
+*.svg
+*.csv
+*.rpt
+
+# =========================
+# STM32 / CubeIDE
+# =========================
+# Build folders
+Debug/
+Release/
+build/
+out/
+
+# Eclipse / CubeIDE metadata
+.settings/
+.metadata/
+*.launch
+.cproject
+.project
+*.mxproject
+
+# STM32Cube generated
+*.ioc.bak
+*.ioc~
+
+# Logs
+*.log
+
+# =========================
+# C / C++
+# =========================
+# Executables
+*.elf
+*.bin
+*.hex
+*.map
+*.o
+*.obj
+*.d
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environnements virtuels
+venv/
+.env/
+ENV/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Jupyter (si besoin)
+.ipynb_checkpoints/
+
+# =========================
+# OS / éditeurs
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
