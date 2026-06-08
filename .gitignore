@@ -16,13 +16,13 @@ sym-lib-table.bak
 fp-lib-table.bak
 
 # Fichiers de fabrication (optionnel selon si tu veux les versionner)
-*.gbr
-*.drl
-*.ps
-*.pdf
-*.svg
-*.csv
-*.rpt
+#*.gbr
+#*.drl
+#*.ps
+#*.pdf
+#*.svg
+#*.csv
+#*.rpt
 
 # =========================
 # STM32 / CubeIDE

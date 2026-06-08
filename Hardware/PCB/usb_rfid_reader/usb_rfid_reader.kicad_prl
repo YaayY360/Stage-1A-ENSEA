@@ -54,12 +54,13 @@
     "zone_display_mode": 0
   },
   "git": {
+    "integration_disabled": false,
     "repo_type": "",
     "repo_username": "",
     "ssh_key": ""
   },
   "meta": {
-    "filename": "Kicad_ RFID_Project.kicad_prl",
+    "filename": "usb_rfid_reader.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {
