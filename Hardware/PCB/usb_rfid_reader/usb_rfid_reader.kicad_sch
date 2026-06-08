@@ -12226,7 +12226,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+		(property "Footprint" "10172013-00011LF:AMPHENOL_10172013-00011LF"
 			(at 48.26 45.72 0)
 			(effects
 				(font

@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Component
 
-# Create your views here.
+def component_list(request):
+    components = Component.objects.all()
+    return render(request, 'component_list.html', {'components': components})

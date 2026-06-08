@@ -17,7 +17,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from rfid_reader_app.views import component_list
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('component/', component_list, name='component_list'),
 ]
