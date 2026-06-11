@@ -550,7 +550,7 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "usb_rfid_reader.step",
       "svg": "",
       "vrml": ""
     },
