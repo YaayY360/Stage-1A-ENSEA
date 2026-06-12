@@ -17,11 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from rfid_reader_app.views import component_list,component_detail
+from rfid_reader_app.views import component_list,component_detail,drawer_view
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('component/', component_list, name='component_list'),
-    path('component/<int:component_id>/', component_detail, name='component_detail')
+    path('component/<int:component_id>/', component_detail, name='component_detail'),
+    path('tiroclass/<int:tiroclass_id>/drawer/<int:drawer_number>/', drawer_view, name='drawer_view')
 ]

@@ -1,7 +1,19 @@
 from django.contrib import admin
-from .models import Component
+from .models import Component, Tiroclass, Drawer, Position
 from .APIs.mouser_api import get_component_info
 
+
+@admin.register(Tiroclass)
+class TiroclassAdmin(admin.ModelAdmin):
+    list_display = ['id', 'drawer_count']
+    
+@admin.register(Drawer)
+class DrawerAdmin(admin.ModelAdmin):
+    list_display = ['id', 'tiroclass', 'number']
+  
+@admin.register(Position)
+class PositionAdmin(admin.ModelAdmin):
+    list_display = ['component', 'drawer', 'row', 'column']
 
 @admin.register(Component)
 class ComponentAdmin(admin.ModelAdmin):
@@ -20,6 +32,7 @@ class ComponentAdmin(admin.ModelAdmin):
               'manufacturer', 'description', 
               'supplier_pn', 'datasheet_url']
 
+
     def save_model(self, request, obj, form, change):
         # Si le MPN a changé ou est nouveau → appel API Mouser
         if obj.mpn:
@@ -34,3 +47,5 @@ class ComponentAdmin(admin.ModelAdmin):
                     obj.unit_price = data.get("price_ht") or 0.0
 
         super().save_model(request, obj, form, change)
+        
+        

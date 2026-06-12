@@ -1,0 +1,133 @@
+ {% load grid_filters %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Tiroclass {{ tiroclass.id }} — Drawer {{ drawer.number }}</title>
+
+    <style>
+
+        table { border-collapse: collapse; margin: 20px; }
+
+        th {
+
+            background: #f0f0f0;
+
+            width: 80px;
+
+            height: 40px;
+
+            text-align: center;
+
+            border: 1px solid #ccc;
+
+
+        }
+
+        td {
+
+            width: 80px;
+
+            height: 60px;
+
+            text-align: center;
+
+            border: 1px solid #ccc;
+
+            font-size: 11px;
+
+        }
+
+        .occupied {
+
+            background: #F44336;
+
+            color: red;
+
+        }
+
+        .empty {
+
+            background: white;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <h1>Tiroclass {{ tiroclass.id }} — Drawer {{ drawer.number }}</h1>
+
+
+    <table>
+
+
+        <!-- En-tête des colonnes 1→12 -->
+
+        <tr>
+
+            <th></th>   <!-- case vide coin haut gauche -->
+
+            {% for col in cols %}
+
+                <th>{{ col }}</th>
+
+            {% endfor %}
+
+        </tr>
+
+
+        <!-- Lignes A→H -->
+
+        {% for row in rows %}
+
+        <tr>
+
+            <th>{{ row }}</th>   <!-- étiquette de ligne -->
+
+
+            {% for col in cols %}
+
+                {% with cell=grid|get_cell:row|add:","|add:col|stringformat:"s" %}
+
+                    {% if cell %}
+
+                        <td class="occupied">
+
+                            <a href="{% url 'component_detail' cell.id %}">
+
+                                {{ cell.mpn }}
+
+                            </a>
+
+                        </td>
+
+                    {% else %}
+
+                        <td class="empty"></td>
+
+                    {% endif %}
+
+                {% endwith %}
+
+            {% endfor %}
+
+
+        </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+
+</body>
+
+</html>
+
