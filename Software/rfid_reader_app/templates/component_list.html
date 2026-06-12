@@ -15,7 +15,7 @@
                     <th>Component Type</th>
                     <th>Unit Price</th>
                     <th>Last Refill</th>
-                    <th>Datasheet</th>
+                    <th> + Infos </th>
                     
                 </tr>
             </thead>
@@ -28,13 +28,10 @@
                     <td>{{ component.unit_price }} € HT</td>
                     <td>{{ component.created_at}}</td>
 					<td>
-						{% if component.datasheet_url %}
-							<a href="{{ component.datasheet_url }}" target="_blank">
-								Ouvrir la datasheet
-							</a>
-						{% else %}
-							-
-						{% endif %}
+						<a href="{% url 'component_detail' component.id %}" target="_blank">
+							Ouvrir
+						</a>
+
 					</td>
                 </tr>
                 {% endfor %}
