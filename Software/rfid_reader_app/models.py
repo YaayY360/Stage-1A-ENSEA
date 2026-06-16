@@ -1,11 +1,20 @@
 from django.db import models
 
 class Component(models.Model):
+    
+    TYPE_CHOICES = [
+        ('led',        'LED'),
+        ('resistor',   'Resistor'),
+        ('capacitor',  'Capacitor'),
+        ('inductor',   'Inductor'),
+        ('other',      'Other'),
+    ]
+    
     uid_rfid = models.CharField(max_length=100)
     mpn = models.CharField(max_length=100)
     quantity = models.IntegerField(default=0)
-    datasheet_url= models.URLField(max_length=500, blank=True)
-    component_type = models.CharField(max_length=100, blank = True)
+    datasheet_url= models.URLField(max_length=1000, blank=True)
+    component_type = models.CharField(max_length=20,choices=TYPE_CHOICES,default='other')
     unit_price = models.FloatField(default=0.0)
     comment = models.CharField(max_length=400)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -13,7 +22,28 @@ class Component(models.Model):
     description    = models.CharField(max_length=500, blank=True)
     supplier_pn    = models.CharField(max_length=100, blank=True)
    
-    
+
+
+class ComponentSpec(models.Model):
+    component = models.OneToOneField(Component, on_delete=models.CASCADE,
+                                     related_name='spec')
+
+    # LED
+    led_type       = models.CharField(max_length=50,  blank=True, null=True)
+    max_current_ma = models.FloatField(blank=True, null=True)
+    tension_v      = models.FloatField(blank=True, null=True)
+
+    # Resistor
+    value_ohm      = models.FloatField(blank=True, null=True)
+
+    # Capacitor
+    capacitor_type      = models.CharField(max_length=50, blank=True, null=True)
+    capacitance_microf  = models.FloatField(blank=True, null=True)
+
+    # Inductor
+    inductance_mh  = models.FloatField(blank=True, null=True)
+
+
    
 class Tiroclass(models.Model):
     drawer_count = models.IntegerField(default=0)

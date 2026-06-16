@@ -36,7 +36,7 @@ def drawer_view(request, tiroclass_id, drawer_number):
 
     # Construire la matrice 8x12 vide
     rows = ['A','B','C','D','E','F','G','H']
-    cols = range(1, 13)
+    cols = [str(i) for i in range(1, 13)]
     
     positions = Position.objects.filter(drawer=drawer).select_related('component')
     
@@ -45,6 +45,8 @@ def drawer_view(request, tiroclass_id, drawer_number):
     for pos in positions:
         grid[(pos.row, pos.column)] = pos.component
         
+    print("GRID CONTENT:", grid)
+    
     return render(request, 'drawer.html', {
         'tiroclass': tiroclass,
         'drawer':   drawer,

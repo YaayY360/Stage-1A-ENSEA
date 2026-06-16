@@ -85,43 +85,29 @@
 
         <!-- Lignes A→H -->
 
-        {% for row in rows %}
+		{% for row in rows %}
+		<tr>
+			<th>{{ row }}</th>   {% for col in cols %}
+				{% with coord=row|add:","|add:col %}
+            
+					{% with cell=grid|get_cell:coord %}
+                
+						{% if cell %}
+							<td class="occupied">
+								<a href="{% url 'component_detail' cell.id %}" style="color: white;">
+									{{ cell.mpn }}
+								</a>
+							</td>
+						{% else %}
+							<td class="empty"></td>
+						{% endif %}
 
-        <tr>
+					{% endwith %}
+				{% endwith %}
+			{% endfor %}
 
-            <th>{{ row }}</th>   <!-- étiquette de ligne -->
-
-
-            {% for col in cols %}
-
-                {% with cell=grid|get_cell:row|add:","|add:col|stringformat:"s" %}
-
-                    {% if cell %}
-
-                        <td class="occupied">
-
-                            <a href="{% url 'component_detail' cell.id %}">
-
-                                {{ cell.mpn }}
-
-                            </a>
-
-                        </td>
-
-                    {% else %}
-
-                        <td class="empty"></td>
-
-                    {% endif %}
-
-                {% endwith %}
-
-            {% endfor %}
-
-
-        </tr>
-
-        {% endfor %}
+		</tr>
+		{% endfor %}
 
 
     </table>
