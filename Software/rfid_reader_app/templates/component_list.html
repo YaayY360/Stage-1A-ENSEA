@@ -10,29 +10,70 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Category</th>
+                    <th>Subcategory</th>
                     <th>MPN</th>
+                    <th>SPN</th>
                     <th>Quantity</th>
-                    <th>Component Type</th>
-                    <th>Unit Price</th>
-                    <th>Last Refill</th>
-                    <th> + Infos </th>
-                    
+                    <th>Features</th>
+                     <th>SMD/THT</th>
+                    <th>Package</th>
+                    <th>+ Infos</th>
                 </tr>
             </thead>
             <tbody>
                 {% for component in components %}
                 <tr>
-                    <td>{{ component.mpn}}</td>
-                    <td>{{ component.quantity }}</td>
-                    <td>{{ component.component_type}}</td>
-                    <td>{{ component.unit_price }} € HT</td>
-                    <td>{{ component.created_at}}</td>
 					<td>
-						<a href="{% url 'component_detail' component.id %}" target="_blank">
-							Ouvrir
-						</a>
-
+                        {% if component.category %}
+                            {{ component.category.name }}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if component.subcategory %}
+                            {{ component.subcategory.name }}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                    
+                    <td>{{ component.mpn }}</td>
+                    <td>{{ component.spn }}</td>
+					<td>{{ component.quantity }}</td>
+					<td>
+						<ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
+							{% for comp_criteria in component.criterias.all %}
+								<li>
+									<strong>{{ comp_criteria.criteria.criteria }} :</strong> 
+									{{ comp_criteria.value }} 
+									{% if comp_criteria.criteria.unit %}
+										{{ comp_criteria.criteria.unit }}
+									{% endif %}
+								</li>
+							{% empty %}
+								<li style="color: #888; font-style: italic;">Aucun critère</li>
+							{% endfor %}
+						</ul>
 					</td>
+					
+					<td>{{ component.smd_or_tht }}</td>
+                    <td>
+                        {% if component.package %}
+                            {{ component.package.dimension }}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                   
+                  
+                    <td>
+                        <a href="{% url 'component_detail' component.id %}"
+                           class="btn btn-sm btn-primary">
+                            Ouvrir
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
