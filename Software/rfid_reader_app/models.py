@@ -55,6 +55,8 @@ class Component(models.Model):
     package     = models.ForeignKey(Package, on_delete=models.SET_NULL,null=True, blank=True,related_name='components')
     category    = models.ForeignKey(Category, on_delete=models.SET_NULL,null=True, blank=True,related_name='components')
     subcategory = models.ForeignKey(Subcategory, on_delete=models.SET_NULL,null=True, blank=True,related_name='components')
+    datasheet_url = models.CharField(max_length=1000,blank=True)
+    unit_price_ht = models.FloatField(default=0.0)
 
     def __str__(self):
         return self.mpn
@@ -86,6 +88,7 @@ class Drawer(models.Model):
     tiroclass = models.ForeignKey(Tiroclass, on_delete=models.CASCADE,
                                    related_name='drawers')
     number    = models.IntegerField(default=1)
+    drawer_name = models.CharField(max_length=100, default='')
 
     class Meta:
         unique_together = ['tiroclass', 'number']

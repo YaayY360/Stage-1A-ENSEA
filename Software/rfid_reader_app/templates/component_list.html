@@ -1,36 +1,117 @@
 <!DOCTYPE html>
 <html>
+	
+<head>
+    <meta charset="UTF-8">
+    <title>ENSEA Stock Component</title>
+    <style>
+        /* Supprime les marges par défaut du navigateur */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Notre rectangle du haut */
+        .rectangle-haut {
+            width: 100%;          /* Prend toute la largeur */
+            height: 150px;         /* Hauteur du rectangle */
+            background-color: #a71850; 
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="rectangle-haut">
+        <h2>Stock Component</h2>
+    </div>
+
+</body>
 <head>
     <title>Available Components</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Ajustements pour les barres de filtrage intégrées au tableau */
+        .search-row th {
+            background-color: #fdfdfd !important;
+            padding: 6px !important;
+        }
+        .search-input {
+            width: 100%;
+            padding: 4px 8px;
+            font-size: 13px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .search-input:focus {
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Available Components</h1>
-        <table class="table table-striped">
+    <div class="container-fluid px-4 mt-5">
+        <h1 class="mb-4">Available Components</h1>
+        
+        <table class="table table-striped align-middle" id="componentTable">
             <thead>
                 <tr>
+                    <th>Datasheet</th>
                     <th>Category</th>
                     <th>Subcategory</th>
                     <th>MPN</th>
                     <th>SPN</th>
                     <th>Quantity</th>
                     <th>Features</th>
-                     <th>SMD/THT</th>
+                    <th>SMD/THT</th>
                     <th>Package</th>
+                    <th>Unit Price HT (Euro€)</th>
                     <th>+ Infos</th>
                 </tr>
+                <tr class="search-row">
+                    <th><input type="text" class="search-input" data-col="0" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="1" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="2" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="3" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="4" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="5" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="6" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="7" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="8" placeholder="Filtrer..."></th>
+                    <th><input type="text" class="search-input" data-col="9" placeholder="Filtrer..."></th>
+                    <th></th> </tr>
             </thead>
             <tbody>
                 {% for component in components %}
                 <tr>
-					<td>
+                    <td>
+                        {% if component.datasheet_url %}
+                            <a href="{{ component.datasheet_url }}" target="_blank" style="color: #007bff; text-decoration: underline;">
+                                Voir la datasheet de {{ component.mpn }}
+                            </a>
+                        {% elif mouser_data.datasheet %}
+                            <a href="{{ mouser_data.datasheet }}" target="_blank" style="color: #007bff; text-decoration: underline;">
+                                Voir la datasheet (Mouser)
+                            </a>
+                        {% else %}
+                            <span style="color: #888; font-style: italic;">Non disponible</span>
+                        {% endif %}
+                    </td>
+                    
+                    <td>
                         {% if component.category %}
                             {{ component.category.name }}
                         {% else %}
                             —
                         {% endif %}
                     </td>
+                    
                     <td>
                         {% if component.subcategory %}
                             {{ component.subcategory.name }}
@@ -39,26 +120,30 @@
                         {% endif %}
                     </td>
                     
-                    <td>{{ component.mpn }}</td>
-                    <td>{{ component.spn }}</td>
-					<td>{{ component.quantity }}</td>
-					<td>
-						<ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
-							{% for comp_criteria in component.criterias.all %}
-								<li>
-									<strong>{{ comp_criteria.criteria.criteria }} :</strong> 
-									{{ comp_criteria.value }} 
-									{% if comp_criteria.criteria.unit %}
-										{{ comp_criteria.criteria.unit }}
-									{% endif %}
-								</li>
-							{% empty %}
-								<li style="color: #888; font-style: italic;">Aucun critère</li>
-							{% endfor %}
-						</ul>
-					</td>
-					
-					<td>{{ component.smd_or_tht }}</td>
+                    <td><strong>{{ component.mpn }}</strong></td>
+                    
+                    <td>{{ component.spn|default:"—" }}</td>
+                    
+                    <td>{{ component.quantity }}</td>
+                    
+                    <td>
+                        <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
+                            {% for comp_criteria in component.criterias.all %}
+                                <li>
+                                    <strong>{{ comp_criteria.criteria.criteria }} :</strong> 
+                                    {{ comp_criteria.value }} 
+                                    {% if comp_criteria.criteria.unit %}
+                                        {{ comp_criteria.criteria.unit }}
+                                    {% endif %}
+                                </li>
+                            {% empty %}
+                                <li style="color: #888; font-style: italic;">No criteria</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    
+                    <td>{{ component.smd_or_tht }}</td>
+                    
                     <td>
                         {% if component.package %}
                             {{ component.package.dimension }}
@@ -66,11 +151,11 @@
                             —
                         {% endif %}
                     </td>
-                   
+                    
+                    <td>{{ component.unit_price_ht|default:"0.00" }}</td>
                   
                     <td>
-                        <a href="{% url 'component_detail' component.id %}"
-                           class="btn btn-sm btn-primary">
+                        <a href="{% url 'component_detail' component.id %}" class="btn btn-sm btn-primary">
                             Ouvrir
                         </a>
                     </td>
@@ -79,5 +164,44 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const table = document.getElementById("componentTable");
+            const tbody = table.getElementsByTagName("tbody")[0];
+            const rows = tbody.getElementsByTagName("tr");
+            const inputs = document.querySelectorAll(".search-input");
+
+            function filterTable() {
+                for (let row of rows) {
+                    let shouldDisplay = true;
+
+                    // On parcourt chaque barre de recherche active
+                    inputs.forEach(input => {
+                        const colIndex = parseInt(input.getAttribute("data-col"));
+                        const filterValue = input.value.toLowerCase().trim();
+                        
+                        if (filterValue) {
+                            const cell = row.cells[colIndex];
+                            const cellText = cell ? cell.textContent.toLowerCase() : "";
+
+                            // Si le texte de la cellule ne correspond pas à la recherche, on cache la ligne
+                            if (!cellText.includes(filterValue)) {
+                                shouldDisplay = false;
+                            }
+                        }
+                    });
+
+                    // Application immédiate de l'affichage ou masquage de la ligne
+                    row.style.display = shouldDisplay ? "" : "none";
+                }
+            }
+
+            // Déclenche le filtrage dès qu'une touche est relâchée dans un champ
+            inputs.forEach(input => {
+                input.addEventListener("keyup", filterTable);
+            });
+        });
+    </script>
 </body>
 </html>

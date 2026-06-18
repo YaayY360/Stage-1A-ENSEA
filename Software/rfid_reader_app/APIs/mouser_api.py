@@ -26,8 +26,9 @@ def get_component_info(spn :str):
         "manufacturer": part.get("Manufacturer"),
         "description":  part.get("Description"),
         "datasheet":    part.get("DataSheetUrl"),
-        "price_ht":     _extract_price(part.get("PriceBreaks", [])),
+        "unit_price_ht":     _extract_price(part.get("PriceBreaks", [])),
         "supplier_pn":  part.get("MouserPartNumber"),
+        "image_url": part.get("ImagePath"),
     }
 
 def _extract_price(price_breaks: list) -> float:

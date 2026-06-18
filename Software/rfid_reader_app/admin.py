@@ -23,7 +23,7 @@ class PackageAdmin(admin.ModelAdmin):
     
 @admin.register(Component)
 class ComponentAdmin(admin.ModelAdmin):
-    list_display=['id',"mpn","spn","quantity","smd_or_tht","package","category","subcategory" ]
+    list_display=['id',"mpn","spn","quantity","smd_or_tht","package","category","subcategory","datasheet_url" ]
     
 @admin.register(ComponentCriteria)
 class ComponentCriteriaAdmin(admin.ModelAdmin):
@@ -35,7 +35,7 @@ class TiroclassAdmin(admin.ModelAdmin):
     
 @admin.register(Drawer)
 class DrawerAdmin(admin.ModelAdmin):
-    list_display=['id',"tiroclass","number"]
+    list_display=['id',"tiroclass","number","drawer_name"]
     
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
