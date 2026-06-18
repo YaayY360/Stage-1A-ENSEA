@@ -1,6 +1,6 @@
+from django.conf import settings
 import requests
 
-MOUSER_API_KEY="3bb4d1f3-9ee2-458d-ba45-839175385dad"
 MOUSER_API_URL="https://api.mouser.com/api/v1/search/partnumber"
 
 def get_component_info(spn :str):
@@ -10,7 +10,7 @@ def get_component_info(spn :str):
             "partSearchOptions": "string"
             }
         }
-    params= {"apiKey" : MOUSER_API_KEY}
+    params= {"apiKey" : settings.MOUSER_API_KEY}
     
 # Requête API mouser stockée dans data 
     response = requests.post(MOUSER_API_URL, json=payload, params=params)

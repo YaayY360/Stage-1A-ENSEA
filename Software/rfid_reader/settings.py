@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import environ
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -116,3 +117,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+
+#Gestion sécurité Clé API : 
+
+
+# Initialiser environ    
+env = environ.Env(
+    # Définir des valeurs par défaut si la variable est absente
+    DEBUG=(bool, False)
+)
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Lire le fichier .env
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+#remplacer les variables Django par celles du .env :
+DEBUG = env('DEBUG')
+MOUSER_API_KEY = env('MOUSER_API_KEY')
+FARNELL_API_KEY = env('FARNELL_API_KEY')
