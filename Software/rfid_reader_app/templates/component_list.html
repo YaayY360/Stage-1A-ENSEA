@@ -53,6 +53,19 @@
             outline: 0;
             box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
         }
+        .search-select {
+			width: 100%;
+			padding: 4px 4px;
+			font-size: 13px;
+			border: 1px solid #ced4da;
+			border-radius: 4px;
+			box-sizing: border-box;
+			background-color: white;
+		}
+		.search-select:focus {
+			border-color: #86b7fe;
+			outline: 0;
+		}
     </style>
 </head>
 <body>
@@ -75,14 +88,34 @@
                     <th>+ Infos</th>
                 </tr>
                 <tr class="search-row">
-                    <th><input type="text" class="search-input" data-col="0" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="1" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="2" placeholder="Filtrer..."></th>
+                    <th></th>
+					<th>
+						<select class="search-select" data-col="1">
+							<option value="">All</option>
+							{% for cat in categories %}
+								<option value="{{ cat.name|lower }}">{{ cat.name }}</option>
+							{% endfor %}
+						</select>
+					</th>
+					<th>
+						<select class="search-select" data-col="2">
+							<option value="">All</option>
+							{% for subcat in subcategories %}
+								<option value="{{ subcat.name|lower }}">{{ subcat.name }}</option>
+							{% endfor %}
+						</select>
+					</th>
                     <th><input type="text" class="search-input" data-col="3" placeholder="Filtrer..."></th>
                     <th><input type="text" class="search-input" data-col="4" placeholder="Filtrer..."></th>
                     <th><input type="text" class="search-input" data-col="5" placeholder="Filtrer..."></th>
                     <th><input type="text" class="search-input" data-col="6" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="7" placeholder="Filtrer..."></th>
+                    <th>
+						<select class="search-select" data-col="7">
+							<option value="">All</option>
+							<option value="smd">SMD</option>
+							<option value="tht">THT</option>
+						</select>
+					</th>
                     <th><input type="text" class="search-input" data-col="8" placeholder="Filtrer..."></th>
                     <th><input type="text" class="search-input" data-col="9" placeholder="Filtrer..."></th>
                     <th></th> </tr>
@@ -100,7 +133,7 @@
                                 Voir la datasheet (Mouser)
                             </a>
                         {% else %}
-                            <span style="color: #888; font-style: italic;">Non disponible</span>
+                            <span style="color: #888; font-style: italic;">Not Available</span>
                         {% endif %}
                     </td>
                     
@@ -167,41 +200,63 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const table = document.getElementById("componentTable");
-            const tbody = table.getElementsByTagName("tbody")[0];
-            const rows = tbody.getElementsByTagName("tr");
-            const inputs = document.querySelectorAll(".search-input");
+			const table = document.getElementById("componentTable");
+			const tbody = table.getElementsByTagName("tbody")[0];
+			const rows = tbody.getElementsByTagName("tr");
+    
+			// On récupère les inputs de texte ET les menus déroulants
+			const inputs = document.querySelectorAll(".search-input");
+			const selects = document.querySelectorAll(".search-select");
 
-            function filterTable() {
-                for (let row of rows) {
-                    let shouldDisplay = true;
+			function filterTable() {
+				for (let row of rows) {
+					let shouldDisplay = true;
 
-                    // On parcourt chaque barre de recherche active
-                    inputs.forEach(input => {
-                        const colIndex = parseInt(input.getAttribute("data-col"));
-                        const filterValue = input.value.toLowerCase().trim();
-                        
-                        if (filterValue) {
-                            const cell = row.cells[colIndex];
-                            const cellText = cell ? cell.textContent.toLowerCase() : "";
+					// 1. Filtrage via les champs de texte (recherche partielle)
+					inputs.forEach(input => {
+						const colIndex = parseInt(input.getAttribute("data-col"));
+						const filterValue = input.value.toLowerCase().trim();
+						
+						if (filterValue) {
+							const cell = row.cells[colIndex];
+							const cellText = cell ? cell.textContent.toLowerCase() : "";
+							if (!cellText.includes(filterValue)) {
+								shouldDisplay = false;
+							}
+						}
+					});
 
-                            // Si le texte de la cellule ne correspond pas à la recherche, on cache la ligne
-                            if (!cellText.includes(filterValue)) {
-                                shouldDisplay = false;
-                            }
-                        }
-                    });
+					// 2. Filtrage via les menus déroulants (recherche exacte ou vide)
+					selects.forEach(select => {
+						const colIndex = parseInt(select.getAttribute("data-col"));
+						const filterValue = select.value.toLowerCase().trim();
+						
+						if (filterValue) {
+							const cell = row.cells[colIndex];
+							const cellText = cell ? cell.textContent.toLowerCase().trim() : "";
+							
+							// Si la cellule ne contient pas exactement l'option sélectionnée, on cache
+							if (!cellText.includes(filterValue)) {
+								shouldDisplay = false;
+							}
+						}
+					});
 
-                    // Application immédiate de l'affichage ou masquage de la ligne
-                    row.style.display = shouldDisplay ? "" : "none";
-                }
-            }
+					// Application de l'affichage
+					row.style.display = shouldDisplay ? "" : "none";
+				}
+			}
 
-            // Déclenche le filtrage dès qu'une touche est relâchée dans un champ
-            inputs.forEach(input => {
-                input.addEventListener("keyup", filterTable);
-            });
-        });
+			// Événement pour les inputs textuels (dès qu'on tape une touche)
+			inputs.forEach(input => {
+				input.addEventListener("keyup", filterTable);
+			});
+
+			// Événement pour les menus déroulants (dès qu'on change d'option)
+			selects.forEach(select => {
+				select.addEventListener("change", filterTable);
+			});
+		});
     </script>
 </body>
 </html>

@@ -6,8 +6,13 @@ def component_list(request):
     components = Component.objects.all().select_related(
         'category', 'subcategory', 'package'
     ).order_by('-id')
+    categories = Category.objects.all()
+    subcategories = Subcategory.objects.all()
+    
     return render(request, 'component_list.html', {
-        'components': components
+        'components': components,
+        'categories': categories,         
+        'subcategories': subcategories,  
     })
 
 def component_detail(request, component_id):
