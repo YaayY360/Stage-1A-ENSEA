@@ -17,10 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from rfid_reader_app.views import component_list, component_detail
+from rfid_reader_app.views import component_list, component_detail, export_components_csv
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('component/', component_list, name='component_list'),
     path('component/<int:component_id>/', component_detail, name='component_detail'),
+    path('export/csv/', export_components_csv, name='export_components_csv'),
 ]
