@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rfid_reader_app',
+    'django_cas_ng',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,20 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 DEBUG = env('DEBUG')
 MOUSER_API_KEY = env('MOUSER_API_KEY')
 FARNELL_API_KEY = env('FARNELL_API_KEY')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # Permet de continuer à utiliser l'admin classique Django
+    'django_cas_ng.backends.CASBackend',        # Permet la connexion via le CAS
+)
+
+# L'URL absolue du serveur CAS de ton école
+CAS_SERVER_URL = 'https://identites.ensea.fr/cas/login?service=https%3A%2F%2Fintranet.ensea.fr%2F_authenticate%3FrequestedURL%3D%252Ffr%252Findex.html'  # <-- À remplacer par la vraie URL de l'école
+
+# Version du protocole CAS (généralement '3' pour les versions modernes)
+CAS_VERSION = '3'
+
+# Redirection après une connexion réussie
+CAS_REDIRECT_URL = '/component/'  # Redirige par exemple vers ta page de composants
+
+# Créer automatiquement l'utilisateur dans Django s'il existe sur le CAS mais pas encore sur ton site
+CAS_CREATE_USER = True

@@ -1,59 +1,297 @@
 <!DOCTYPE html>
-<html>
-	
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENSEA Stock Component</title>
-    <style>
-        /* Supprime les marges par défaut du navigateur */
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Notre rectangle du haut */
-        .rectangle-haut {
-            width: 100%;          /* Prend toute la largeur */
-            height: 150px;         /* Hauteur du rectangle */
-            background-color: #a71850; 
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="rectangle-haut">
-        <h2>Stock Component</h2>
-    </div>
-
-</body>
-<head>
-    <title> Available Components</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Ajustements pour les barres de filtrage intégrées au tableau */
-        .search-row th {
-            background-color: #fdfdfd !important;
-            padding: 6px !important;
-        }
-        .search-input {
-            width: 100%;
-            padding: 4px 8px;
-            font-size: 13px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .search-input:focus {
-            border-color: #86b7fe;
-            outline: 0;
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        }
-        .search-select {
+    
+	<style>
+		/* ==========================================================================
+		   1. BLOCAGE DE LA PAGE GLOBAL À LA HAUTEUR DE L'ÉCRAN
+		   ========================================================================== */
+		html, body {
+			height: 100vh;
+			margin: 0;
+			padding: 0;
+			background-color: #f8f9fa;
+			overflow: hidden; /* Empêche la page entière de scroller */
+			display: flex;
+			flex-direction: column;
+		}
+
+		/* --- LE RECTANGLE DU HAUT --- */
+		.rectangle-haut {
+			width: 100%;
+			height: 150px;
+			min-height: 150px; /* Sécurité pour empêcher l'écrasement vertical */
+			flex-shrink: 0;    /* Force le navigateur à lui laisser ses 150px de hauteur */
+			background-color: #a71850; 
+			color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative; /* Indispensable pour caler le bouton à droite */
+		}
+
+		/* --- ACCROCHE ET POSITIONNEMENT DU BOUTON CAS À DROITE --- */
+		.auth-container {
+			position: absolute;
+			top: 50%;                  /* Aligne verticalement au centre du rectangle */
+			transform: translateY(-50%);
+			right: 30px;               /* Positionne le bouton TOUT À DROITE */
+			z-index: 100;
+		}
+
+		.user-logged {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			background-color: rgba(255, 255, 255, 0.15);
+			padding: 6px 14px;
+			border-radius: 20px;
+			border: 1px solid rgba(255, 255, 255, 0.25);
+		}
+
+		.username-text {
+			font-size: 13px;
+			font-weight: 500;
+			color: #ffffff;
+			font-family: Arial, sans-serif;
+		}
+
+		/* Style commun aux boutons Connexion / Déconnexion */
+		.btn-cas-logout, .btn-cas-login {
+			display: inline-block;
+			background-color: #ffffff;
+			color: #a71850; 
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: bold;
+			font-family: Arial, sans-serif;
+			padding: 6px 16px;
+			border-radius: 15px;
+			transition: all 0.2s ease;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+
+		/* Effet au survol */
+		.btn-cas-logout:hover, .btn-cas-login:hover {
+			background-color: #FFE0EE; 
+			color: #85123e;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+		}
+		/* Ajustement du conteneur Bootstrap pour occuper tout l'espace restant */
+		.container-fluid.d-flex.gap-4.px-4 {
+			height: calc(100vh - 150px);
+			padding-top: 20px; /* Remplace le margin-bottom pour éviter les sauts */
+			overflow: hidden;
+		}
+
+		/* ==========================================================================
+		   2. RÉPARATION DE LA SIDEBAR (Plus de scroll ici pour laisser le menu sortir)
+		   ========================================================================== */
+		.d-flex.flex-column.gap-3[style*="width: 280px"] {
+			height: 100%;
+			overflow: visible !important; /* TRÈS IMPORTANT : Permet aux sous-catégories de s'afficher */
+		}
+
+		/* --- STYLES DE LA BARRE LATÉRALE DE CATÉGORIES --- */
+		.mouser-sidebar {
+			width: 280px;
+			min-width: 280px;
+			background-color: #ffffff;
+			border: 1px solid #e0e0e0;
+			font-family: Arial, sans-serif;
+			position: relative;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+			border-radius: 4px;
+			align-self: flex-start;
+		}
+
+		.category-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.category-item {
+			position: static;
+		}
+
+		.category-link {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 12px 16px;
+			color: #333333;
+			text-decoration: none;
+			font-size: 14px;
+			border-bottom: 1px solid #f5f5f5;
+			transition: background-color 0.2s, color 0.2s;
+		}
+
+		.category-link:hover {
+			background-color: #FFE0EE;
+			color: #a71850;
+			font-weight: bold;
+		}
+
+		.category-link .arrow {
+			color: #999999;
+			font-size: 12px;
+		}
+
+		/* Panneau des sous-catégories */
+		.subcategory-pan {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 280px;
+			width: 500px;
+			min-height: 100%;
+			background-color: #ffffff;
+			border: 1px solid #e0e0e0;
+			box-shadow: 5px 2px 15px rgba(0,0,0,0.1);
+			z-index: 1000;
+			padding: 20px;
+			box-sizing: border-box;
+			border-radius: 0 4px 4px 0;
+		}
+
+		.category-item:hover .subcategory-pan {
+			display: block;
+		}
+
+		.pan-title {
+			font-size: 17px;
+			color: #a71850;
+			margin-top: 0;
+			margin-bottom: 15px;
+			border-bottom: 2px solid #a71850;
+			padding-bottom: 8px;
+			font-weight: bold;
+			text-decoration: none;
+			display: block;
+		}
+		
+		.pan-title:hover {
+			color: #0056b3;
+		}
+
+		.subcategory-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 10px 20px;
+		}
+
+		.subcategory-link {
+			color: #555555;
+			text-decoration: none;
+			font-size: 13px;
+			padding: 4px 0;
+			transition: color 0.2s;
+			cursor: pointer;
+		}
+
+		.subcategory-link:hover {
+			color: #a71850;
+			text-decoration: underline;
+		}
+
+		.empty-msg {
+			color: #999;
+			font-style: italic;
+			font-size: 13px;
+			margin: 0;
+		}
+		
+		/* --- STYLE DU CADRE DESCRIPTION --- */
+		.sidebar-description {
+			width: 280px;
+			min-width: 280px;
+			background-color: #ffffff;
+			border: 1px solid #e0e0e0;
+			font-family: Arial, sans-serif;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+			border-radius: 4px;
+			padding: 16px;
+			box-sizing: border-box;
+		}
+
+		.sidebar-description h5 {
+			color: #a71850;
+			font-size: 14px;
+			font-weight: bold;
+			margin-top: 0;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.sidebar-description p {
+			color: #555555;
+			font-size: 13px;
+			line-height: 1.5;
+			margin: 0;
+		}
+
+		/* ==========================================================================
+		   3. BLOCAGE DE TOUTE LA ZONE DE RECHERCHE ET DU TITRE (STICKY HEADER)
+		   ========================================================================== */
+		.table-responsive {
+			height: 100%;
+			overflow-y: auto; /* Seul le tableau interne défile */
+			padding-right: 5px;
+		}
+
+		/* Rend l'intégralité du haut du tableau fixe (Titre, Bouton, Filtres) */
+		.table-responsive > div.d-flex.justify-content-between {
+			position: sticky;
+			top: 0;
+			background-color: #f8f9fa; /* Fond de la page pour cacher les lignes qui montent */
+			z-index: 20;
+			padding-bottom: 15px;
+			margin-bottom: 0 !important;
+		}
+
+		/* Rend la ligne de titre des colonnes fixe */
+		.table thead tr:first-child th {
+			position: sticky;
+			top: 55px; /* Aligné juste sous le titre principal */
+			background-color: #ffffff !important;
+			z-index: 15;
+			box-shadow: inset 0 -1px 0 #e0e0e0;
+		}
+
+		/* Rend les inputs de filtres fixes */
+		.search-row th {
+			position: sticky;
+			top: 95px; /* Placé juste sous la ligne d'en-tête */
+			background-color: #fdfdfd !important;
+			padding: 6px !important;
+			z-index: 15;
+			box-shadow: inset 0 -1px 0 #e0e0e0;
+		}
+
+		/* --- STYLES DES FILTRES DE LA TABLE --- */
+		.search-input {
+			width: 100%;
+			padding: 4px 8px;
+			font-size: 13px;
+			border: 1px solid #ced4da;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		.search-input:focus {
+			border-color: #86b7fe;
+			outline: 0;
+			box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+		}
+		.search-select {
 			width: 100%;
 			padding: 4px 4px;
 			font-size: 13px;
@@ -66,203 +304,284 @@
 			border-color: #86b7fe;
 			outline: 0;
 		}
-    </style>
+		
+		/* Personnalisation du bouton ouvrir */
+		.table .btn-primary {
+			background-color: #a71850;
+			border-color: #a71850;
+		}
+
+		.table .btn-primary:hover {
+			background-color: #85123e;
+			border-color: #85123e;
+		}
+	</style>
 </head>
 <body>
-	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1 class="m-0" style="font-size: 2.5rem; font-weight: 500;margin-left: 50px !important;">Available Components</h1>
-		
-		<div>
-			<a href="{% url 'export_components_csv' %}" class="btn btn-secondary d-flex align-items-center gap-2">
-				📄 Exporter vers CSV (.csv)
-			</a>
+
+	<div class="rectangle-haut">
+		<h2>Stock Component</h2>
+
+		<div class="auth-container">
+			{% if user.is_authenticated %}
+				<div class="user-logged">
+					<span class="username-text">👤 {{ user.username }}</span>
+					<a href="{% url 'cas_ng_logout' %}" class="btn-cas-logout">Déconnexion</a>
+				</div>
+			{% else %}
+				<a href="{% url 'cas_ng_login' %}" class="btn-cas-login">Connexion</a>
+			{% endif %}
 		</div>
 	</div>
-        <table class="table table-striped align-middle" id="componentTable">
-            <thead>
-                <tr>
-                    <th>Datasheet</th>
-                    <th>Category</th>
-                    <th>Subcategory</th>
-                    <th>MPN</th>
-                    <th>SPN</th>
-                    <th>Quantity</th>
-                    <th>Features</th>
-                    <th>SMD/THT</th>
-                    <th>Package</th>
-                    <th>Unit Price HT (Euro€)</th>
-                    <th>+ Infos</th>
-                </tr>
-                <tr class="search-row">
-                    <th></th>
-					<th>
-						<select class="search-select" data-col="1">
-							<option value="">All</option>
-							{% for cat in categories %}
-								<option value="{{ cat.name|lower }}">{{ cat.name }}</option>
-							{% endfor %}
-						</select>
-					</th>
-					<th>
-						<select class="search-select" data-col="2">
-							<option value="">All</option>
-							{% for subcat in subcategories %}
-								<option value="{{ subcat.name|lower }}">{{ subcat.name }}</option>
-							{% endfor %}
-						</select>
-					</th>
-                    <th><input type="text" class="search-input" data-col="3" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="4" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="5" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="6" placeholder="Filtrer..."></th>
-                    <th>
-						<select class="search-select" data-col="7">
-							<option value="">All</option>
-							<option value="smd">SMD</option>
-							<option value="tht">THT</option>
-						</select>
-					</th>
-                    <th><input type="text" class="search-input" data-col="8" placeholder="Filtrer..."></th>
-                    <th><input type="text" class="search-input" data-col="9" placeholder="Filtrer..."></th>
-                    <th></th> </tr>
-            </thead>
-            <tbody>
-                {% for component in components %}
-                <tr>
-                    <td>
-                        {% if component.datasheet_url %}
-                            <a href="{{ component.datasheet_url }}" target="_blank" style="color: #007bff; text-decoration: underline;">
-                                Available
+
+    <div class="container-fluid d-flex gap-4 px-4">
+        
+        <div class="d-flex flex-column gap-3" style="width: 280px; min-width: 280px;">
+            
+            <div class="mouser-sidebar w-100" style="box-sizing: border-box;">
+                <ul class="category-list">
+                    {% for category in categories %}
+                        <li class="category-item">
+                            <a href="#" class="category-link reset-category-filter">
+                                <span>{{ category.name }}</span>
+                                <span class="arrow">&gt;</span>
                             </a>
-                        {% elif mouser_data.datasheet %}
-                            <a href="{{ mouser_data.datasheet }}" target="_blank" style="color: #007bff; text-decoration: underline;">
-                                Voir la datasheet (Mouser)
+                            
+                            <div class="subcategory-pan">
+                                <a href="#" class="pan-title reset-category-filter">{{ category.name }}</a>
+                                <div class="subcategory-grid">
+                                    {% for subcategory in category.subcategories.all %}
+                                        <a href="#" class="subcategory-link filter-trigger" data-subcategory="{{ subcategory.name|lower }}">
+                                            {{ subcategory.name }}
+                                        </a>
+                                    {% empty %}
+                                        <p class="empty-msg">No Subcategory Available </p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="sidebar-description">
+                <h5>Informations </h5>
+                <p>
+                    <strong>Developper :</strong> Yanis GRAVE <br>
+                    <strong>Description :</strong> Gestionnaire de stock interne pour les composants électroniques de l'école. Ce site permet de suivre la disponibilité et d'accéder rapidement aux informations.
+                </p>
+            </div>
+
+        </div> 
+        <div class="flex-grow-1 table-responsive">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+
+   
+                <div>
+                    <h1 class="m-0" style="font-size: 2.5rem; font-weight: 500;">Available Components</h1>
+                    <h3 id="current-filter-title" class="text-muted mt-1" style="font-size: 1.3rem; font-weight: 400; display: none;">
+                        Filter : <span class="badge bg-secondary" id="filter-name-display"></span>
+                    </h3>
+                </div>
+                <div>
+                    <a href="{% url 'export_components_csv' %}" class="btn btn-secondary d-flex align-items-center gap-2">
+                        📄 Exporter vers CSV (.csv)
+                    </a>
+                </div>
+            </div>
+
+            <table class="table table-striped align-middle bg-white rounded shadow-sm" id="componentTable">
+                <thead>
+                    <tr>
+                        <th>Datasheet</th>
+                        <th>Category</th>
+                        <th>Subcategory</th>
+                        <th>MPN</th>
+                        <th>SPN</th>
+                        <th>Quantity</th>
+                        <th>Features</th>
+                        <th>SMD/THT</th>
+                        <th>Package</th>
+                        <th>Unit Price HT (Euro€)</th>
+                        <th>+ Infos</th>
+                    </tr>
+                    <tr class="search-row">
+                        <th></th>
+                        <th></th>
+                         <th></th>
+                        <th><input type="text" class="search-input" data-col="3" placeholder="Filtrer..."></th>
+                        <th><input type="text" class="search-input" data-col="4" placeholder="Filtrer..."></th>
+                        <th><input type="text" class="search-input" data-col="5" placeholder="Filtrer..."></th>
+                        <th><input type="text" class="search-input" data-col="6" placeholder="Filtrer..."></th>
+                        <th>
+                            <select class="search-select" data-col="7">
+                                <option value="">All</option>
+                                <option value="smd">SMD</option>
+                                <option value="tht">THT</option>
+                            </select>
+                        </th>
+                        <th><input type="text" class="search-input" data-col="8" placeholder="Filtrer..."></th>
+                        <th><input type="text" class="search-input" data-col="9" placeholder="Filtrer..."></th>
+                        <th></th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for component in components %}
+                    <tr>
+                        <td>
+                            {% if component.datasheet_url %}
+                                <a href="{{ component.datasheet_url }}" target="_blank" style="color: #007bff; text-decoration: underline;">
+                                    Available
+                                </a>
+                            {% elif mouser_data.datasheet %}
+                                <a href="{{ mouser_data.datasheet }}" target="_blank" style="color: #007bff; text-decoration: underline;">
+                                    Available
+                                </a>
+                            {% else %}
+                                <span style="color: #888; font-style: italic;">Not Available</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ component.category.name|default:"—" }}</td>
+                        <td>{{ component.subcategory.name|default:"—" }}</td>
+                        <td>{{ component.mpn }}</td>
+                        <td>{{ component.spn|default:"—" }}</td>
+                        <td>{{ component.quantity }}</td>
+                        
+                        <td>
+                            <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
+                                {% for comp_criteria in component.criterias.all %}
+                                    <li>
+                                        <strong>{{ comp_criteria.criteria.criteria }} :</strong> 
+                                        {{ comp_criteria.value }} 
+                                        {% if comp_criteria.criteria.unit %}
+                                            {{ comp_criteria.criteria.unit }}
+                                        {% endif %}
+                                    </li>
+                                {% empty %}
+                                    <li style="color: #888; font-style: italic;">No criteria</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        
+                        <td>{{ component.smd_or_tht }}</td>
+                        <td>{{ component.package.dimension|default:"—" }}</td>
+                        <td>{{ component.unit_price_ht|default:"0.00" }}</td>
+                      
+                        <td>
+                            <a href="{% url 'component_detail' component.id %}" class="btn btn-sm btn-primary">
+                                Open
                             </a>
-                        {% else %}
-                            <span style="color: #888; font-style: italic;">Not Available</span>
-                        {% endif %}
-                    </td>
-                    
-                    <td>
-                        {% if component.category %}
-                            {{ component.category.name }}
-                        {% else %}
-                            —
-                        {% endif %}
-                    </td>
-                    
-                    <td>
-                        {% if component.subcategory %}
-                            {{ component.subcategory.name }}
-                        {% else %}
-                            —
-                        {% endif %}
-                    </td>
-                    
-                    <td><strong>{{ component.mpn }}</strong></td>
-                    
-                    <td>{{ component.spn|default:"—" }}</td>
-                    
-                    <td>{{ component.quantity }}</td>
-                    
-                    <td>
-                        <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
-                            {% for comp_criteria in component.criterias.all %}
-                                <li>
-                                    <strong>{{ comp_criteria.criteria.criteria }} :</strong> 
-                                    {{ comp_criteria.value }} 
-                                    {% if comp_criteria.criteria.unit %}
-                                        {{ comp_criteria.criteria.unit }}
-                                    {% endif %}
-                                </li>
-                            {% empty %}
-                                <li style="color: #888; font-style: italic;">No criteria</li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                    
-                    <td>{{ component.smd_or_tht }}</td>
-                    
-                    <td>
-                        {% if component.package %}
-                            {{ component.package.dimension }}
-                        {% else %}
-                            —
-                        {% endif %}
-                    </td>
-                    
-                    <td>{{ component.unit_price_ht|default:"0.00" }}</td>
-                  
-                    <td>
-                        <a href="{% url 'component_detail' component.id %}" class="btn btn-sm btn-primary">
-                            Ouvrir
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-			const table = document.getElementById("componentTable");
-			const tbody = table.getElementsByTagName("tbody")[0];
-			const rows = tbody.getElementsByTagName("tr");
+            const table = document.getElementById("componentTable");
+            const tbody = table.getElementsByTagName("tbody")[0];
+            const rows = tbody.getElementsByTagName("tr");
     
-			// On récupère les inputs de texte ET les menus déroulants
-			const inputs = document.querySelectorAll(".search-input");
-			const selects = document.querySelectorAll(".search-select");
+            const inputs = document.querySelectorAll(".search-input");
+            const selects = document.querySelectorAll(".search-select");
+            
+            // Éléments du sous-titre dynamique
+            const filterTitleContainer = document.getElementById("current-filter-title");
+            const filterNameDisplay = document.getElementById("filter-name-display");
 
-			function filterTable() {
-				for (let row of rows) {
-					let shouldDisplay = true;
+            // Variable globale stockant le filtre de sous-catégorie actuel
+            let activeSubcategoryFilter = "";
 
-					// 1. Filtrage via les champs de texte (recherche partielle)
-					inputs.forEach(input => {
-						const colIndex = parseInt(input.getAttribute("data-col"));
-						const filterValue = input.value.toLowerCase().trim();
-						
-						if (filterValue) {
-							const cell = row.cells[colIndex];
-							const cellText = cell ? cell.textContent.toLowerCase() : "";
-							if (!cellText.includes(filterValue)) {
-								shouldDisplay = false;
-							}
-						}
-					});
+            function filterTable() {
+                for (let row of rows) {
+                    let shouldDisplay = true;
 
-					// 2. Filtrage via les menus déroulants (recherche exacte ou vide)
-					selects.forEach(select => {
-						const colIndex = parseInt(select.getAttribute("data-col"));
-						const filterValue = select.value.toLowerCase().trim();
-						
-						if (filterValue) {
-							const cell = row.cells[colIndex];
-							const cellText = cell ? cell.textContent.toLowerCase().trim() : "";
-							
-							// Si la cellule ne contient pas exactement l'option sélectionnée, on cache
-							if (!cellText.includes(filterValue)) {
-								shouldDisplay = false;
-							}
-						}
-					});
+                    // 1. Filtrage par la barre latérale (Sous-catégorie - Colonne Index 2)
+                    if (activeSubcategoryFilter) {
+                        const subcatCell = row.cells[2];
+                        const subcatText = subcatCell ? subcatCell.textContent.toLowerCase().trim() : "";
+                        if (subcatText !== activeSubcategoryFilter) {
+                            shouldDisplay = false;
+                        }
+                    }
 
-					// Application de l'affichage
-					row.style.display = shouldDisplay ? "" : "none";
-				}
-			}
+                    // 2. Filtrage via les champs de texte existants (MPN, SPN, etc.)
+                    inputs.forEach(input => {
+                        const colIndex = parseInt(input.getAttribute("data-col"));
+                        const filterValue = input.value.toLowerCase().trim();
+                        
+                        if (filterValue) {
+                            const cell = row.cells[colIndex];
+                            const cellText = cell ? cell.textContent.toLowerCase() : "";
+                            if (!cellText.includes(filterValue)) {
+                                shouldDisplay = false;
+                            }
+                        }
+                    });
 
-			// Événement pour les inputs textuels (dès qu'on tape une touche)
-			inputs.forEach(input => {
-				input.addEventListener("keyup", filterTable);
-			});
+                    // 3. Filtrage via les menus déroulants restants (ex: THT/SMD)
+                    selects.forEach(select => {
+                        const colIndex = parseInt(select.getAttribute("data-col"));
+                        const filterValue = select.value.toLowerCase().trim();
+                        
+                        if (filterValue) {
+                            const cell = row.cells[colIndex];
+                            const cellText = cell ? cell.textContent.toLowerCase().trim() : "";
+                            if (!cellText.includes(filterValue)) {
+                                shouldDisplay = false;
+                            }
+                        }
+                    });
 
-			// Événement pour les menus déroulants (dès qu'on change d'option)
-			selects.forEach(select => {
-				select.addEventListener("change", filterTable);
-			});
-		});
+                    row.style.display = shouldDisplay ? "" : "none";
+                }
+            }
+
+            // Gestionnaire de clic sur une sous-catégorie
+            document.querySelectorAll(".filter-trigger").forEach(link => {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    
+                    // Récupérer le nom propre et la version normalisée pour le filtrage
+                    const selectedSubcatLabel = this.textContent.trim();
+                    activeSubcategoryFilter = this.getAttribute("data-subcategory");
+
+                    // Mettre à jour et afficher le sous-titre dynamique
+                    filterNameDisplay.textContent = selectedSubcatLabel;
+                    filterTitleContainer.style.display = "block";
+
+                    // Appliquer le filtre global
+                    filterTable();
+                });
+            });
+
+            // Gestionnaire pour réinitialiser le filtre (clic sur une catégorie principale)
+            document.querySelectorAll(".reset-category-filter").forEach(link => {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    
+                    // On vide le filtre et on cache le sous-titre
+                    activeSubcategoryFilter = "";
+                    filterTitleContainer.style.display = "none";
+                    
+                    // Appliquer le filtre global (tout réafficher)
+                    filterTable();
+                });
+            });
+
+            // Événements pour les entrées clavier des filtres classiques du tableau
+            inputs.forEach(input => {
+                input.addEventListener("keyup", filterTable);
+            });
+
+            // Événements pour les sélections des menus déroulants du tableau
+            selects.forEach(select => {
+                select.addEventListener("change", filterTable);
+            });
+        });
     </script>
 </body>
 </html>

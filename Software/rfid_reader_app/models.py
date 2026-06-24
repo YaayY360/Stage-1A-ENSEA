@@ -67,7 +67,7 @@ class ComponentCriteria(models.Model):
                                    related_name='criterias')
     criteria  = models.ForeignKey(Criteria, on_delete=models.CASCADE,
                                    related_name='components')
-    value     = models.CharField(max_length=100)
+    value = models.CharField(max_length=100, blank=True, default='')
 
     class Meta:
         unique_together = ['component', 'criteria']

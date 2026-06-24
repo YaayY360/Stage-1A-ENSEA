@@ -21,13 +21,63 @@ class CriteriaSubcategoryAdmin(admin.ModelAdmin):
 class PackageAdmin(admin.ModelAdmin):
     list_display=['id',"dimension"]
     
-@admin.register(Component)
-class ComponentAdmin(admin.ModelAdmin):
-    list_display=['id',"mpn","spn","quantity","smd_or_tht","package","category","subcategory","datasheet_url" ]
-    
+# @admin.register(Component)
+# class ComponentAdmin(admin.ModelAdmin):
+#     list_display=['id',"mpn","spn","quantity","smd_or_tht","package","category","subcategory","datasheet_url" ]
+
+
+
 @admin.register(ComponentCriteria)
 class ComponentCriteriaAdmin(admin.ModelAdmin):
     list_display=['id',"component","criteria","value"]
+    
+class ComponentCriteriaInline(admin.TabularInline):
+    model = ComponentCriteria
+    extra = 0
+    fields = ['criteria', 'value']
+    readonly_fields = ['criteria']  # le critère est imposé par la sous-catégorie
+
+@admin.register(Component)
+class ComponentAdmin(admin.ModelAdmin):
+    list_display=['id',"mpn","spn","quantity","smd_or_tht","package","category","subcategory","datasheet_url" ]
+
+    inlines        = [ComponentCriteriaInline]
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
+        obj = form.instance
+
+        # Si une sous-catégorie est définie
+        if obj.subcategory:
+            # Récupère tous les critères associés à cette sous-catégorie
+            criteria_ids = CriteriaSubcategory.objects.filter(
+                subcategory=obj.subcategory
+            ).values_list('criteria_id', flat=True)
+
+            # Crée automatiquement les ComponentCriteria manquants
+            for criteria_id in criteria_ids:
+                ComponentCriteria.objects.get_or_create(
+                    component=obj,
+                    criteria_id=criteria_id,
+                    defaults={'value': ''}
+                )
+
+            # Supprime les critères qui ne correspondent plus à la sous-catégorie
+            ComponentCriteria.objects.filter(
+                component=obj
+            ).exclude(
+                criteria_id__in=criteria_ids
+            ).delete()
+
+
+
+
+
+        def get_queryset(self, request):
+            return super().get_queryset(request).select_related('package', 'category', 'subcategory' )
     
 @admin.register(Tiroclass)
 class TiroclassAdmin(admin.ModelAdmin):

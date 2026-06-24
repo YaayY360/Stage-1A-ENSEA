@@ -1,0 +1,210 @@
+Datasheet,Category,Subcategory,MPN,SPN,Quantity,SMD/THT,Package
+https://www.mouser.fr/datasheet/2/109/C18481B-2944388.pdf,Optoelectronic,LED,5988G10313F,3584522,60,SMD,custom
+https://www.vishay.com/docs/82495/tsop753.pdf,Optoelectronic,IR,TSOP75338TT,1779691,50,SMD,custom
+https://www.we-online.com/components/products/datasheet/150060GS55040.pdf,Optoelectronic,LED,150060GS55040,,100,SMD,603
+https://www.we-online.com/components/products/datasheet/150060YS55040.pdf,Optoelectronic,LED,150060YS55040,,100,SMD,603
+https://www.we-online.com/components/products/datasheet/150060BS55040.pdf,Optoelectronic,LED,150060BS55040,,100,SMD,603
+https://www.we-online.com/components/products/datasheet/150060RS55040.pdf,Optoelectronic,LED,150060RS55040,,100,SMD,603
+https://www.we-online.com/components/products/datasheet/150060AS55040.pdf,Optoelectronic,LED,150060AS55040,,300,SMD,603
+https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1773269&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=2-2176057-6,PassiveComponents,resistors,RLP73K3AR11FTDF,2805295,30,SMD,2512
+https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1773269&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=2-2176057-6,PassiveComponents,resistors,RLP73K3AR16JTE,2805301,30,SMD,2512
+https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1773269&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=2-2176057-6,PassiveComponents,resistors,RLP73N3AR075JTE,2991966,30,SMD,2512
+https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1773035&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=4-1625999-0,PassiveComponents,resistors,HSC1004R7J,161-6160,5,-,
+https://www.vishay.com/docs/20019/rcwe.pdf,PassiveComponents,resistors,RCWE1210R300FKEA,1838677,10,SMD,1210
+https://www.we-online.com/components/products/datasheet/744766001.pdf,PassiveComponents,inductors,744766001,,8,SMT,4532
+https://www.we-online.com/components/products/datasheet/560050350011.pdf,PassiveComponents,resistors,560050350011,,50,SMD,2010
+https://www.we-online.com/components/products/datasheet/74438356220.pdf,PassiveComponents,inductors,74438356220,,3,SMT,4020
+https://www.we-online.com/components/products/datasheet/74404084220.pdf,PassiveComponents,inductors,74404084220,,40,SMT,8040
+https://www.we-online.com/components/products/datasheet/74404086221.pdf,PassiveComponents,inductors,74404086221,,15,SMT,8065
+https://www.we-online.com/components/products/datasheet/744066005.pdf,PassiveComponents,inductors,744066005,,3,SMT,1035
+https://www.we-online.com/components/products/datasheet/7447709220.pdf,PassiveComponents,inductors,7447709220,,37,SMT,1210
+https://www.we-online.com/components/products/datasheet/744771122.pdf,PassiveComponents,inductors,784771220,,6,SMT,1260
+https://www.we-online.com/components/products/datasheet/865060462010.pdf,PassiveComponents,capacitors,865060462010,,48,SMD,"12,5 x 14,0"
+https://www.we-online.com/components/products/datasheet/865060445005.pdf,PassiveComponents,capacitors,865060445005,,50,SMD,"6,3 x 7,7"
+https://www.we-online.com/components/products/datasheet/865060440001.pdf,PassiveComponents,capacitors,865060440001,,80,SMD,"4,0 x 5,5"
+https://www.we-online.com/components/products/datasheet/865060640001.pdf,PassiveComponents,capacitors,865060640001,,100,SMD,"4,0 x 5,5"
+https://www.we-online.com/components/products/datasheet/865060463011.pdf,PassiveComponents,capacitors,865060463011,,48,SMD,"16,0 x 17,0"
+https://www.we-online.com/components/products/datasheet/865080463017.pdf,PassiveComponents,capacitors,865080463017,,10,SMD,"16,0x17,0"
+https://www.we-online.com/components/products/datasheet/865060453007.pdf,PassiveComponents,capacitors,865060453007,,48,SMD,"8,0 x 10,5"
+https://www.we-online.com/components/products/datasheet/865060657012.pdf,PassiveComponents,capacitors,865060657012,,16,SMD,"10,0 x 10,5"
+https://www.we-online.com/components/products/datasheet/7447709680.pdf,PassiveComponents,inductors,7447709680,,9,SMT,1210
+https://www.we-online.com/components/products/datasheet/744821120.pdf,PassiveComponents,inductors,744821120,,4,THT,X5
+https://www.we-online.com/components/products/datasheet/865060240001.pdf,PassiveComponents,capacitors,865060240001,,8,SMD,"4,0 x 5,5"
+https://www.we-online.com/components/products/datasheet/865060442002.pdf,PassiveComponents,capacitors,865060442002,,30,SMD,"5,0 x 5,5"
+https://www.we-online.com/components/products/datasheet/865060457009.pdf,PassiveComponents,capacitors,865060457009,,38,SMD,"10,0 x 10,5"
+https://www.we-online.com/components/products/datasheet/865060443004.pdf,PassiveComponents,capacitors,865060443004,,30,SMD,"6,3 x 5,5"
+https://www.we-online.com/components/products/datasheet/865060642004.pdf,PassiveComponents,capacitors,865060642004,,40,SMD,"5,0 x 5,5"
+https://www.we-online.com/en/components/products/download/inlay/860010,PassiveComponents,capacitors,860010,,1,THT,kit
+https://www.we-online.com/en/components/products/download/inlay/865061,PassiveComponents,capacitors,865061,,1,SMD,kit
+https://www.vishay.com/docs/45259/vjhifreq-designkit.pdf,PassiveComponents,capacitors,VJ0603HIFRQ1KITHT,,1,SMD,603
+https://www.vishay.com/docs/45259/vjhifreq-designkit.pdf,PassiveComponents,capacitors,VJ0603HIFRQ2KITHT,,1,SMD,603
+https://www.we-online.com/components/products/datasheet/7447860139.pdf,PassiveComponents,inductors,7447860139,,100,SMD,603
+https://www.farnell.com/datasheets/3550987.pdf,Power,AC-DC_Converters,MP-LD30-23B15R2,3780527,4,THT,custom
+https://www.farnell.com/datasheets/3155173.pdf,Power,AC-DC_Converters,MP-LDE06-20B05,3556397,4,THT,custom
+https://www.tracoPower.com/sites/default/files/products/datasheets/tmlm_datasheet.pdf?t=1730163601,Power,AC-DC_Converters,TMLM 04253,1772165,1,THT,custom
+https://www.tracoPower.com/sites/default/files/products/datasheets/tmp_tmpm_datasheet.pdf?t=1730163601,Power,AC-DC_Converters,TMP 15148,1672144,1,THT,custom
+,Semiconductors,amplifier,HCPL-7800A-500E,174-4179,16,SMD,Gull Wing 300
+,Semiconductors,amplifier,NCS199A3RSQT2G,2981170,53,SMD,SC-70
+,Semiconductors,buffer,74LVC2G241DCTRG4,595-74LVC2G241DCTRG4,7,SMD,SM-8
+,embeddedSolutions,communicationRF,TXRX433,38176,8,THT,
+https://www.mouser.fr/datasheet/2/670/pqq6w_s-2474782.pdf,Power,DC-DC_Converters,PQQ6W-Q24-S15-S,490-PQQ6W-Q24-S15-S,18,THT,SIP-7
+https://www.farnell.com/datasheets/3195174.pdf,Power,DC-DC_Converters,MPRB2415S-6W,3652723,5,THT,SIP-7
+https://g.recomcdn.com/media/Datasheet/pdf/.fldP_2rX/.t124a6889b0e40eeb9ac1/Datasheet-285/R-78B-2_0.pdf,Power,DC-DC_Converters,R-78B5.0-2.0,139-2959,0,THT,SIP3
+https://www.we-online.com/components/products/datasheet/171013801.pdf,Power,DC-DC_Converters,171013801,,10,SMD,custom
+https://www.we-online.com/components/products/datasheet/173950378.pdf,Power,DC-DC_Converters,173950378,,4,THT,Type F
+https://www.we-online.com/components/products/datasheet/173950536.pdf,Power,DC-DC_Converters,173950536,,6,THT,Type F
+https://www.we-online.com/components/products/datasheet/17791063215.pdf,Power,DC-DC_Converters,17791063215,,11,SMD,SIP-8
+https://www.diodes.com/datasheet/download/1N4148WS.pdf,Semiconductors,diodes,1N4148WS-7-F,1843678,20,SMD,SOD-323
+https://www.littelfuse.com/media?resourcetype=datasheets&itemid=912974f6-eef7-4845-b8b6-22945ea4a824&filename=littelfuse-Power-semiconductor-schottky-rectifier-dst10100s-datasheet,Semiconductors,diodes,DST10100S,4066566,35,SMD,TO-227B
+https://www.onsemi.com/pdf/datasheet/fsv340af-d.pdf,Semiconductors,diodes,FSV340AF,2824885,18,SMD,DO-214AD
+https://www.st.com/resource/en/datasheet/stps0520z.pdf,Semiconductors,diodes,STPS0520Z,1467545,3,SMD,SOD-123
+https://www.st.com/resource/en/datasheet/usblc6-2.pdf,Semiconductors,diodes,USBLC6-2SC6,624-7693,56,SMD,SOT-23
+https://www.vishay.com/docs/88943/ss2p5.pdf,Semiconductors,diodes,SS2P5-M3/84A,1812486,18,SMD,DO-220AA
+https://www.vishay.com/docs/94927/vs-15tq060s-m3.pdf,Semiconductors,diodes,VS-15TQ060S-M3,2909608,35,SMD,TO-263AB
+,Semiconductors,gateDriver,HCPL-315J_500E,174-4163,7,SMD,SO-16
+,Semiconductors,gpioExpander,"PCF8574TS/3,118",219-4650,9,SMD,SSOP20
+,Semiconductors,gpioExpander,MCP23017-E/SO,403-816,8,SMD,SOIC-28
+https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/21618b.pdf,Semiconductors,integratedCircuits,MCP2120-I/SL,1084305,2,SMD,SOIC-14
+https://www.ti.com/lit/ds/symlink/lm3404.pdf?ts=1730061548853,Semiconductors,integratedCircuits,LM3404MA/NOPB,926-LM3404MA/NOPB,8,SMD,SOIC-8
+,Semiconductors,ledDriver,"CA9685PW,118",1854074,9,SMD,TSSOP-28
+,Semiconductors,motorDriver,TMC2225-SA-T,3690353,51,SMD,HTSSOP-28
+,Semiconductors,motorDriver,TMC2226-SAT-T,3439216,6,SMD,HTSSOP-28
+,Semiconductors,motorDriver,TMC2590-TA,3237586,17,SMD,TQFP-EP
+https://www.analog.com/media/en/technical-documentation/data-sheets/1074fds.pdf,Semiconductors,PowerManagementICs,LT1076CR#PBF,584-LT1076CR#PBF,7,SMD,custom
+https://www.analog.com/media/en/technical-documentation/data-sheets/MAX5033.pdf,Semiconductors,PowerManagementICs,MAX5033DUSA+,700-MAX5033DUSA,10,SMD,SOIC-8
+https://www.diodes.com/datasheet/download/AP1509.pdf,Semiconductors,PowerManagementICs,AP1509-50SG-13,751-2923,10,SMD,SOP-8L
+https://www.diodes.com/datasheet/download/AZ1117C.pdf,Semiconductors,PowerManagementICs,AZ1117CH2-3.3TRG1,3483072,45,SMD,SOT-223
+https://www.diodes.com/datasheet/download/AZ1117C.pdf,Semiconductors,PowerManagementICs,AZ1117CH-3.3TRG1,3483073,137,SMD,SOT-223
+https://www.diodes.com/datasheet/download/AZ1117.pdf,Semiconductors,PowerManagementICs,AZ1117H-3.3TRE1,921-0701,45,SMD,SOT-223
+https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/MIC2172-3172-100kHz-1.25A-Switching-Regulators-DS20006208A.pdf,Semiconductors,PowerManagementICs,MIC3172YM,2510055,24,SMD,SOIC-8
+https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/MIC5219-500mA-Peak-Output-LDO-Regulator-DS20006021A.pdf,Semiconductors,PowerManagementICs,MIC5219-3.3YMM,2510255,17,SMD,SOP-8
+https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/MIC5317-High-Performance-Single-150mA-LDO-DS20006195B.pdf,Semiconductors,PowerManagementICs,MIC5317-3.3YM5-TR,2920683,8,SMD,SOT-23
+,Sensors,current,GO 10-SME/SP3,3796461,3,SMD,SOIC-8
+https://fscdn.rohm.com/en/products/databook/datasheet/ic/Power/linear_regulator/buxxsd2mg-m-e.pdf,Semiconductors,PowerManagementICs,BU18SD2MG-MTR,2546639,50,SMD,SSOP-5
+https://fscdn.rohm.com/en/products/databook/datasheet/ic/Power/linear_regulator/buxxsd5wg-e.pdf,Semiconductors,PowerManagementICs,BU33SD5WG-TR,3011248,45,SMD,SSOP-5
+,PassiveComponents,quartz,EC2620TS-25.000M TR,3572937,9,SMD,7mm x 5mm
+,PassiveComponents,quartz,XRCGB27M120F3M00R0,81-XRCGB27M120F3M0R0,7,SMD,"2mm x 1,6mm"
+,PassiveComponents,quartz,ABLS-16.000MHZ-20-B-3-H-T,3228387,39,SMD,"11,5mm x 4,7mm"
+,PassiveComponents,quartz,ABLS-7.3728MHZ-20-B-3-H-T,3228448,3,SMD,"11,5mm x 4,7mm"
+https://www.st.com/resource/en/datasheet/l78m.pdf,Semiconductors,PowerManagementICs,L78M05CDT-TR,2382524,10,SMD,TO-252-3
+,Semiconductors,PowerManagementICs,INN4073C-H183-TL,228-6331,4,SMD,custom
+,Optoelectronic,phototransistor,HCPL-817-300E,1244557,5,SMD,Gull Wing
+,Semiconductors,PowerManagementICs,CPZ1061M,228-6322P,4,SMD,custom
+,Semiconductors,transceiverEth,LAN8742A-CZ-TR,2857750,9,SMD,SQFN
+,Semiconductors,transceiverRF,NRF24L01P-R7,2842317,10,SMD,QFN-20
+,Sensors,IMU,LSM6DSMTR,2664522,2,SMD,LGA-14L
+https://www.vishay.com/docs/76029/sqj504ep.pdf,Semiconductors,transistors,SQJ504EP-T1_GE3,2886991,37,SMD,PowerPak SO
+https://fscdn.rohm.com/en/products/databook/datasheet/discrete/transistor/mosfet/re1c002untcl-e.pdf,Semiconductors,transistors,RE1C002UNTCL,2965337,20,SMD,SOT-416FL
+https://assets.nexperia.com/documents/data-sheet/BUK9637-100E.pdf,Semiconductors,transistors,"BUK9637-100E,118",2254193,19,SMD,TO-263
+https://www.infineon.com/dgdl/Infineon-IRF540N-DataSheet-v01_01-EN.pdf?fileId=5546d462533600a4015355e39f0d19a1,Semiconductors,transistors,IRF540NPBF,914-8154,50,THT,TO-220
+https://www.vishay.com/docs/91016/sihf510s.pdf,Semiconductors,transistors,IRF510SPBF,844-IRF510SPBF,20,SMD,TO-263
+https://www.vishay.com/docs/67036/sq2310es.pdf,Semiconductors,transistors,SQ2310ES-T1_BE3,787-9443,22,SMD,SOT-23
+,,,BMP085,,1,,
+,,,IDUINO HC-05,,3,,
+,,,NRF24L05,,6,,
+,,,module LORA 113060006,,4,,
+,,,adafruit QT PY C3,,1,,
+,,,IMU 10DOF,,2,,
+,,,MAX3097ECSE+,,5,,
+,,,CY7C64225-28PVXCT,,5,,
+,,,CY7C64225-28PVXC,,9,,
+,,,SBC-TTL,,3,,
+,,,TCN75AVOA,,12,,
+https://content.kemet.com/datasheets/CER_ENG_KIT_30.pdf,PassiveComponents,capacitors,CER-ENG-KIT-30,867-5444,1,SMD,805
+https://www.we-online.com/en/components/products/download/inlay/885080,PassiveComponents,capacitors,885080,,1,SMD,"1206, 1210, 1812"
+https://www.we-online.com/en/components/products/download/inlay/885060,PassiveComponents,capacitors,885060,,1,SMD,603
+https://www.vishay.com/docs/45259/vjhifreq-designkit.pdf,PassiveComponents,capacitors,VJ0805HIFRQ2KITHT,,1,SMD,805
+https://www.we-online.com/en/components/products/download/inlay/885070,PassiveComponents,capacitors,885070,,1,SMD,805
+https://www.we-online.com/components/products/datasheet/885012005055.pdf,PassiveComponents,capacitors,885012005055,,1000,SMD,402
+https://www.we-online.com/components/products/datasheet/885012005056.pdf,PassiveComponents,capacitors,885012005056,,100,SMD,402
+https://www.we-online.com/components/products/datasheet/74404054068.pdf,PassiveComponents,inductors,74404054068,,100,SMD,5040
+https://www.we-online.com/components/products/datasheet/74404052047.pdf,PassiveComponents,inductors,74404052047,,100,SMD,5020
+https://4donline.ihs.com/images/VipMasterIC/IC/SCMP/SCMP-S-A0009547702/SCMP-S-A0009547702-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0,PassiveComponents,resistors,MCWR04X1003FTL,2446411,10000,SMD,402
+https://4donline.ihs.com/images/VipMasterIC/IC/SCMP/SCMP-S-A0009547702/SCMP-S-A0009547702-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0,PassiveComponents,resistors,MCWR04X10R0FTL,2446415,10000,SMD,402
+https://4donline.ihs.com/images/VipMasterIC/IC/SCMP/SCMP-S-A0009547702/SCMP-S-A0009547702-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0,PassiveComponents,resistors,MCWR04X1001FTL,2446437,10000,SMD,402
+https://4donline.ihs.com/images/VipMasterIC/IC/SCMP/SCMP-S-A0009547702/SCMP-S-A0009547702-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0,PassiveComponents,resistors,MCWR04X1602FTL,2447114,500,SMD,402
+https://www.farnell.com/datasheets/2860635.pdf,PassiveComponents,resistors,MCMR04X4022FTL,2073013,500,SMD,402
+https://www.farnell.com/datasheets/2861421.pdf,PassiveComponents,resistors,MC00625W040217K68,1803125,500,SMD,402
+https://www.farnell.com/datasheets/2860635.pdf,PassiveComponents,resistors,MCMR04X200 JTL,2072748,500,SMD,402
+https://www.we-online.com/components/products/datasheet/885012106031.pdf,PassiveComponents,capacitors,885012106031,,1000,SMD,603
+https://www.we-online.com/en/components/products/download/inlay/694001,Connector,PowerJacks,694001,,1,SMD,kit
+https://www.we-online.com/en/components/products/download/inlay/613001,Connector,pinHeader_pinSocket,613001,,1,"SMD, THT","1.27mm, 2mm, 2.54mm"
+https://www.we-online.com/en/components/products/download/inlay/150151,Optoelectronic,LED,150151,,1,"SMD, THT",kit
+https://www.we-online.com/en/components/products/download/inlay/158300,Optoelectronic,LED,158300,,1,SMD,kit
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-AC_51_RoHS_L_11.pdf,PassiveComponents,resistors,AC0805FR-07100KL,197-8152,5000,SMD,805
+https://www.we-online.com/components/products/datasheet/784770.pdf,PassiveComponents,inductors,784770,,1,SMD,"1260, 1280, 1210"
+https://www.we-online.com/en/components/products/download/inlay/830002,PassiveComponents,quartz,830002,,1,SMD,kit
+https://www.we-online.com/en/components/products/download/inlay/560112,PassiveComponents,resistors,560112,,1,SMD,402
+https://www.we-online.com/en/components/products/download/inlay/830001,PassiveComponents,quartz,830001,,1,"SMD, THT",kit
+https://www.we-online.com/en/components/products/download/inlay/560114,PassiveComponents,resistors,560114,,1,SMD,"0805, 1206"
+https://www.we-online.com/en/components/products/download/inlay/744790,PassiveComponents,inductors,744790,,1,SMD,"0603, 0805, 1206"
+https://www.we-online.com/components/products/datasheet/885012107019.pdf,PassiveComponents,capacitors,885012107019,,1000,SMD,805
+https://www.we-online.com/components/products/datasheet/885012106012.pdf,PassiveComponents,capacitors,885012106012,,1000,SMD,603
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-AC_51_RoHS_L_11.pdf,PassiveComponents,resistors,AC0805FR-0710KL,197-8157,5000,SMD,805
+https://www.we-online.com/components/products/datasheet/885012205086.pdf,PassiveComponents,capacitors,885012205086,,200,SMD,402
+https://www.we-online.com/components/products/datasheet/885012214001.pdf,PassiveComponents,capacitors,885012214001,,80,SMD,2220
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-AC_51_RoHS_L_11.pdf,PassiveComponents,resistors,AC0805FR-071KL,197-8172,5000,SMD,805
+https://www.we-online.com/components/products/datasheet/885012205085.pdf,PassiveComponents,capacitors,885012205085,,1000,SMD,402
+https://www.farnell.com/datasheets/2830050.pdf,PassiveComponents,resistors,MP000459,3213383,1,SMD,603
+https://www.we-online.com/components/products/datasheet/885012205067.pdf,PassiveComponents,capacitors,885012205067,,1000,SMD,402
+https://www.farnell.com/datasheets/3486024.pdf,PassiveComponents,resistors,MCVVT025M100CA1L,2610879,2000,SMD,"4,0 x 5,4"
+https://www.we-online.com/components/products/datasheet/885012206076.pdf,PassiveComponents,capacitors,885012206076,,1000,SMD,603
+https://docs.rs-online.com/9f65/0900766b8157cb2c.pdf,PassiveComponents,resistors,804-8760,804-8760,5000,SMD,603
+https://docs.rs-online.com/21eb/0900766b8157cb45.pdf,PassiveComponents,resistors,804-8845,804-8845,5000,SMD,603
+https://docs.rs-online.com/bc5c/0900766b8157cb5c.pdf,PassiveComponents,resistors,804-8921,804-8921,5000,SMD,603
+https://www.te.com/en/product-1623094-1.datasheet.pdf,PassiveComponents,resistors,CRG0603ZR,134-5428,5000,SMD,603
+https://www.te.com/en/product-1623401-1.datasheet.pdf,PassiveComponents,resistors,CRG0805ZR,134-5456,5000,SMD,805
+https://www.te.com/en/product-1623404-1.datasheet.pdf,PassiveComponents,resistors,CRG1206F10K,134-5524,5000,SMD,1206
+https://weblib.samsungsem.com/mlcc/mlcc-ec-data-sheet.do?partNumber=CL10B103KB8NNN,PassiveComponents,capacitors,CL10B103KB8NNNC,766-5373,4000,SMD,603
+https://industrial.panasonic.com/cdbs/www-data/pdf/RDA0000/AOA0000C301.pdf,PassiveComponents,resistors,ERJ8GEY0R00V,176-3599,1000,SMD,1206
+https://weblib.samsungsem.com/mlcc/mlcc-ec-data-sheet.do?partNumber=CL10B104KB8NNN,PassiveComponents,capacitors,CL10B104KB8NNNC,766-5443,4000,SMD,603
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1097/ECJ_%28General%29.pdf,PassiveComponents,capacitors,ECJ-2VB1E104K,PCC1828TR-ND,4000,SMD,805
+,PassiveComponents,resistors,RM10JTN103,,5000,SMD,805
+,PassiveComponents,resistors,MCR10 EZH JW111E,,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07100KL,199-5648,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07100R,618-5135,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-0710KL,618-5163,10000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07150RL,242-6901,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-071K5L,199-5668,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07200RL,242-6929,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-0720KL,199-5679,5000,SMD,805
+https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R71H102KA12-01A.pdf,PassiveComponents,capacitors,GRM033R71H102KA12D,185-2113,2500,SMD,201
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-0722KL,199-5686,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07240RL,618-5163,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-072KL,199-5695,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07330RL,242-6989,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-0733KL,618-5163,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-0733RL,618-5163,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07390KL,242-6995,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07390RL,199-5710,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07470RL,242-7007,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-074K7L,242-7021,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-075K1L,199-5732,5000,SMD,805
+https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR71C105KA01-01A.pdf,PassiveComponents,capacitors,GRM21BR71C105KA01L,490-1691-2-ND,3000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-075K6L,199-5734,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805FR-07715RL,3952049,5000,SMD,805
+https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_12.pdf,PassiveComponents,resistors,RC0805JR-070RL,199-5752,5000,SMD,805
+https://docs.rs-online.com/28d2/0900766b8157c903.pdf,PassiveComponents,resistors,802-9618,802-9618,5000,SMD,1206
+,PassiveComponents,resistors,MCR18 EZH JW202E,,5000,SMD,1206
+https://docs.rs-online.com/350b/0900766b8157c940.pdf,PassiveComponents,resistors,802-9784,802-9784,5000,SMD,1206
+https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf,PassiveComponents,resistors,RMCF0805FT909K,RMCF0805FT909KTR-ND,5000,SMD,805
+,PassiveComponents,resistors,,,4000,SMD,1206
+https://www.yageo.com/en/Chart/Download/pdf/CC0805KRX7R9BB681,PassiveComponents,capacitors,CC0805KRX7R9BB681,3019860,4000,SMD,805
+https://docs.rs-online.com/1e78/0900766b815b838f.pdf,PassiveComponents,capacitors,TAJV226K050RNJ,1355458,100,SMD,7361-38
+-,PassiveComponents,resistors,,16922,1,SMD,603
+,PassiveComponents,resistors,MP000460,3213384,1,SMD,805
+https://www.farnell.com/datasheets/2899258.pdf,PassiveComponents,capacitors,293D104X9050A2TE3,9302727,100,SMD,3216-18
+https://www.we-online.com/en/components/products/download/inlay/824599,Semiconductors,diodes,824599,,2,SMD,kit
+,,,,1182,7,,
+,,,STM32F446ZCT6,,10,,
+,,,STM32G431CBU6,,50,,
+,,,STM32U535RET6Q,,7,,
+,,,STM32F0360K6T6,,30,,
+,,,STM32G474RET6,,14,,
+,,,STM32G4A1REI6,,9,,
+,,,STM32F201K6T6,,14,,
+,,,STM32L412KBT6,,50,,
+,,,STM32H573RIT6,,8,,
+,,,STM32U535RET6,,2,,
+,,,STM32G431KBT6,,12,,
+,,,STM32G491CET6,,25,,

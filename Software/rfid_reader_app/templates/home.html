@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<div class="mouser-sidebar">
+    <ul class="category-list">
+        {% for category in categories %}
+            <li class="category-item">
+                <a href="#" class="category-link">
+                    <span>{{ category.name }}</span>
+                    <span class="arrow">&gt;</span>
+                </a>
+                
+                <div class="subcategory-pan">
+                    <h3 class="pan-title">{{ category.name }}</h3>
+                    <div class="subcategory-grid">
+                        {% for subcategory in category.subcategories.all %}
+                            <a href="#" class="subcategory-link">{{ subcategory.name }}</a>
+                        {% empty %}
+                            <p class="empty-msg">Aucune sous-catégorie disponible</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+/* Conteneur principal de la barre latérale */
+.mouser-sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Liste des catégories */
+.category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-item {
+    position: static; /* Impératif pour que le panneau s'aligne par rapport à la barre entière */
+}
+
+/* Style des liens de catégories */
+.category-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #f5f5f5;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.category-link:hover {
+    background-color: #f0f7ff;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.category-link .arrow {
+    color: #999999;
+    font-size: 12px;
+}
+
+/* --- LE PANNEAU DES SOUS-CATÉGORIES --- */
+.subcategory-pan {
+    display: none; /* Masqué par défaut */
+    position: absolute;
+    top: 0;
+    left: 280px; /* Aligné exactement à côté de la barre latérale */
+    width: 500px; /* Largeur du panneau de détails */
+    min-height: 100%;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 5px 2px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Déclencheur au survol */
+.category-item:hover .subcategory-pan {
+    display: block; /* S'affiche lorsque la souris survole le li */
+}
+
+/* Titre dans le panneau */
+.pan-title {
+    font-size: 18px;
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 8px;
+}
+
+/* Grille de sous-catégories (sur 2 colonnes comme Mouser) */
+.subcategory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+}
+
+.subcategory-link {
+    color: #555555;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 4px 0;
+    transition: color 0.2s;
+}
+
+.subcategory-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.empty-msg {
+    color: #999;
+    font-style: italic;
+    font-size: 13px;
+}
+</style>
+
+
+</html>
+

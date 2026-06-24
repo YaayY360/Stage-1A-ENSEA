@@ -95,5 +95,12 @@ def export_components_csv(request):
 
     return response
 
+from django.shortcuts import render
+from .models import Category
 
+def home(request):
+    # On récupère les catégories et on pré-charge leurs sous-catégories en une seule fois
+    categories = Category.objects.prefetch_related('subcategories').all()
+    
+    return render(request, 'home.html', {'categories': categories})
 
