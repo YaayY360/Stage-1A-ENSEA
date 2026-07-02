@@ -35,7 +35,18 @@
 			justify-content: center;
 			position: relative; /* Indispensable pour caler le bouton à droite */
 		}
-
+		
+		/* --- DÉCLINAISONS DE COULEURS UNIQUEMENT --- */
+		.rectangle-haut.bg-reader {
+			background-color: #a71850; /* Ton bordeaux parfait de l'image 2 */
+		}
+		.rectangle-haut.bg- DE COULEURS UNIQUEMENT --- */
+		.rectangle-haut.bg-stock_manager {
+			background-color: #2D3748; /* Le bleu-gris de ton image 1 */
+		}
+		.rectangle-haut.bg-visiteur {
+			background-color: #4A5568; 
+		}
 		/* --- ACCROCHE ET POSITIONNEMENT DU BOUTON CAS À DROITE --- */
 		.auth-container {
 			position: absolute;
@@ -319,17 +330,18 @@
 </head>
 <body>
 
-	<div class="rectangle-haut">
+<div class="rectangle-haut {% if est_responsable_stock %}bg-stock_manager{% elif est_reader %}bg-reader{% else %}bg-visitor{% endif %}">
+		
 		<h2>Stock Component</h2>
 
 		<div class="auth-container">
 			{% if user.is_authenticated %}
 				<div class="user-logged">
 					<span class="username-text">👤 {{ user.username }}</span>
-					<a href="{% url 'cas_ng_logout' %}" class="btn-cas-logout">Déconnexion</a>
+					<a href="{% url 'cas_ng_logout' %}" class="btn-cas-logout">Logout</a>
 				</div>
 			{% else %}
-				<a href="{% url 'cas_ng_login' %}" class="btn-cas-login">Connexion</a>
+				<a href="{% url 'cas_ng_login' %}" class="btn-cas-login">Login</a>
 			{% endif %}
 		</div>
 	</div>
@@ -368,7 +380,7 @@
                 <h5>Informations </h5>
                 <p>
                     <strong>Developper :</strong> Yanis GRAVE <br>
-                    <strong>Description :</strong> Gestionnaire de stock interne pour les composants électroniques de l'école. Ce site permet de suivre la disponibilité et d'accéder rapidement aux informations.
+                    <strong>Description :</strong> Stock management system for the school’s electronic components. This site allows you to monitor availability and access information quickly.
                 </p>
             </div>
 
@@ -385,7 +397,7 @@
                 </div>
                 <div>
                     <a href="{% url 'export_components_csv' %}" class="btn btn-secondary d-flex align-items-center gap-2">
-                        📄 Exporter vers CSV (.csv)
+                        📄 Export to CSV (.csv)
                     </a>
                 </div>
             </div>
@@ -445,8 +457,20 @@
                         <td>{{ component.subcategory.name|default:"—" }}</td>
                         <td>{{ component.mpn }}</td>
                         <td>{{ component.spn|default:"—" }}</td>
-                        <td>{{ component.quantity }}</td>
-                        
+						<td>
+							{% if perms.rfid_reader_app.change_component_quantity %}
+								<div class="d-flex align-items-center justify-content-center">
+									<input type="number" 
+										   value="{{ component.quantity }}" 
+										   min="0"
+										   class="form-control form-control-sm text-center fw-bold stock-input"
+										   onchange="directUpdateQuantity('{{ component.id }}', this.value)"
+										   onkeypress="if(event.key === 'Enter') directUpdateQuantity('{{ component.id }}', this.value)">
+								</div>
+							{% else %}
+								<span class="text-muted">{{ component.quantity }}</span>
+							{% endif %}
+						</td>
                         <td>
                             <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
                                 {% for comp_criteria in component.criterias.all %}
@@ -583,5 +607,26 @@
             });
         });
     </script>
+    
+    <script>
+	function directUpdateQuantity(componentId, newValue) {
+		// Évite les valeurs négatives absurdes
+		if (newValue < 0 || newValue === "") {
+			newValue = 0;
+		}
+		// Redirige vers la vue Django avec l'action 'set' et la nouvelle valeur
+		window.location.href = `/component/${componentId}/set/?value=${newValue}`;
+	}
+	</script>
+
+	<style>
+	/* Petit ajustement CSS pour que le champ input ne soit pas trop large */
+	.stock-input {
+		width: 80px !important;
+		padding: 2px 5px;
+		display: inline-block;
+
+	}
+	</style>
 </body>
 </html>

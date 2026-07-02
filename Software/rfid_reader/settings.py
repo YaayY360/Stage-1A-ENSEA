@@ -155,3 +155,6 @@ CAS_REDIRECT_URL = '/component/'  # Redirige par exemple vers ta page de composa
 
 # Créer automatiquement l'utilisateur dans Django s'il existe sur le CAS mais pas encore sur ton site
 CAS_CREATE_USER = True
+
+# Si un utilisateur non connecté tente d'accéder à une page protégée, Django le renvoie ici :
+LOGIN_URL = 'cas_ng_login'

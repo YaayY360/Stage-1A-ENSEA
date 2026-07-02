@@ -17,15 +17,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from rfid_reader_app.views import component_list, component_detail, export_components_csv, home
+from rfid_reader_app.views import component_list, component_detail, export_components_csv, homepage, update_quantity
 import django_cas_ng.views  # <-- Importe les vues du CAS
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # La racine du site affiche maintenant la page d'accueil publique
+    path('', homepage, name='homepage'),
     path('component/', component_list, name='component_list'),
     path('component/<int:component_id>/', component_detail, name='component_detail'),
     path('export/csv/', export_components_csv, name='export_components_csv'),
-    path( 'home/', home, name='home_page'),
     path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
     path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
+    path('component/<int:component_id>/<str:action>/', update_quantity, name='update_quantity'),
 ]

@@ -1,9 +1,11 @@
 import csv
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Category, Subcategory, Criteria, CriteriaSubcategory, Package, Component, ComponentCriteria, Tiroclass,Drawer,Position
 from .APIs.mouser_api import get_component_info
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
 def component_list(request):
     components = Component.objects.all().select_related(
         'category', 'subcategory', 'package'
@@ -11,12 +13,41 @@ def component_list(request):
     categories = Category.objects.all()
     subcategories = Subcategory.objects.all()
     
+    # On vérifie si l'utilisateur appartient au groupe "Responsables Stock"
+    est_responsable = request.user.groups.filter(name='stock_manager').exists()
+    est_lecteur = request.user.groups.filter(name='reader').exists()
+    
     return render(request, 'component_list.html', {
         'components': components,
         'categories': categories,         
         'subcategories': subcategories,  
+        'est_responsable_stock': est_responsable,
+        'est_reader': est_lecteur,
     })
 
+
+@permission_required('rfid_reader_app.change_component_quantity', raise_exception=True)
+def update_quantity(request, component_id, action):
+    component = get_object_or_404(Component, id=component_id)
+    
+    if action == 'increase':
+        component.quantity += 1
+    elif action == 'decrease' and component.quantity > 0:
+        component.quantity -= 1
+    elif action == 'set':
+        # On récupère le paramètre ?value=XX envoyé par le JavaScript
+        new_val = request.GET.get('value', 0)
+        try:
+            component.quantity = max(0, int(new_val)) # Sécurité anti-négatif
+        except ValueError:
+            pass # Si ce n'est pas un nombre valide, on ne fait rien
+        
+    component.save()
+    return redirect('component_list')
+
+
+
+@login_required
 def component_detail(request, component_id):
     # 1. Récupérer le composant
     component = get_object_or_404(
@@ -67,6 +98,7 @@ def component_detail(request, component_id):
         'grid': grid,  # Si grid est vide, le HTML affichera proprement le message d'absence d'emplacement
     })
 
+@login_required
 def export_components_csv(request):
     # 1. Préparer la réponse HTTP avec le bon type de contenu (MIME type)
     response = HttpResponse(content_type='text/csv; charset=utf-8')
@@ -98,9 +130,10 @@ def export_components_csv(request):
 from django.shortcuts import render
 from .models import Category
 
-def home(request):
-    # On récupère les catégories et on pré-charge leurs sous-catégories en une seule fois
-    categories = Category.objects.prefetch_related('subcategories').all()
+def homepage(request):
+    # Si l'utilisateur est DÉJÀ connecté, on le redirige direct vers les composants
+    if request.user.is_authenticated:
+        return redirect('component_list')
     
-    return render(request, 'home.html', {'categories': categories})
-
+    # Sinon, on lui montre la page de garde avec le bouton
+    return render(request, 'homepage.html')

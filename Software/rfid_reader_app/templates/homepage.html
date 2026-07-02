@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ENSEA - Gestion de Stock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        .btn-ensea {
+            background-color: #a71850;
+            color: white;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+        .btn-ensea:hover {
+            background-color: #85123e;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2 style="color: #a71850; font-weight: bold; margin-bottom: 15px;">Stock Component</h2>
+        <p class="text-muted mb-4">
+            Welcome to ENSEA’s electronic components stock management application.
+        </p>
+        <hr class="mb-4">
+        <p class="small text-secondary mb-4">
+            Access to the database and datasheets is restricted to members of the school.
+        </p>
+        <a href="{% url 'cas_ng_login' %}" class="btn-ensea w-100">
+            Log in with ENSEA Intranet
+        </a>
+    </div>
+
+</body>
+</html>
