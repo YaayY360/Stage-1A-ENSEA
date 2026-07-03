@@ -58,11 +58,11 @@ class Component(models.Model):
     datasheet_url = models.CharField(max_length=1000,blank=True)
     unit_price_ht = models.FloatField(default=0.0)
 
-    # class Meta:
-    #         # On définit une liste de tuples : (code_name, human_readable_name)
-    #         permissions = [
-    #             ("change_component_quantity", "Change Component Quantity"),
-    #         ]
+    class Meta:
+            #permissions personnalisées
+            permissions = [
+                ("can_add_component", "Can add component in database"),
+            ]
         
     def __str__(self):
         return self.mpn

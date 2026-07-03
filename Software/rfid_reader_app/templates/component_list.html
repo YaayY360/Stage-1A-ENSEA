@@ -38,11 +38,10 @@
 		
 		/* --- DÉCLINAISONS DE COULEURS UNIQUEMENT --- */
 		.rectangle-haut.bg-reader {
-			background-color: #a71850; /* Ton bordeaux parfait de l'image 2 */
+			background-color: #a71850; 
 		}
-		.rectangle-haut.bg- DE COULEURS UNIQUEMENT --- */
 		.rectangle-haut.bg-stock_manager {
-			background-color: #2D3748; /* Le bleu-gris de ton image 1 */
+			background-color: #a71850; 
 		}
 		.rectangle-haut.bg-visiteur {
 			background-color: #4A5568; 
@@ -98,7 +97,7 @@
 		/* Ajustement du conteneur Bootstrap pour occuper tout l'espace restant */
 		.container-fluid.d-flex.gap-4.px-4 {
 			height: calc(100vh - 150px);
-			padding-top: 20px; /* Remplace le margin-bottom pour éviter les sauts */
+			padding-top: 20px; 
 			overflow: hidden;
 		}
 
@@ -107,10 +106,9 @@
 		   ========================================================================== */
 		.d-flex.flex-column.gap-3[style*="width: 280px"] {
 			height: 100%;
-			overflow: visible !important; /* TRÈS IMPORTANT : Permet aux sous-catégories de s'afficher */
+			overflow: visible !important; 
 		}
 
-		/* --- STYLES DE LA BARRE LATÉRALE DE CATÉGORIES --- */
 		.mouser-sidebar {
 			width: 280px;
 			min-width: 280px;
@@ -251,41 +249,36 @@
 		}
 
 		/* ==========================================================================
-		   3. BLOCAGE DE TOUTE LA ZONE DE RECHERCHE ET DU TITRE (STICKY HEADER)
+		   3. BLOCAGE DE TOUTE LA ZONE DE RECHERCHE ET DU TITRE (BLOC SOUDÉ)
 		   ========================================================================== */
-		.table-responsive {
-			height: 100%;
-			overflow-y: auto; /* Seul le tableau interne défile */
+
+		/* Conteneur de défilement du tableau */
+		.table-scroll-wrapper {
+			flex-grow: 1;
+			overflow-y: auto;
+			overflow-x: auto;
 			padding-right: 5px;
 		}
 
-		/* Rend l'intégralité du haut du tableau fixe (Titre, Bouton, Filtres) */
-		.table-responsive > div.d-flex.justify-content-between {
+		/* L'ensemble du header (Titres + Filtres) devient un bloc unique et collant */
+		.table thead {
 			position: sticky;
 			top: 0;
-			background-color: #f8f9fa; /* Fond de la page pour cacher les lignes qui montent */
 			z-index: 20;
-			padding-bottom: 15px;
-			margin-bottom: 0 !important;
 		}
 
-		/* Rend la ligne de titre des colonnes fixe */
-		.table thead tr:first-child th {
-			position: sticky;
-			top: 55px; /* Aligné juste sous le titre principal */
+		/* Force un fond opaque pour masquer les données qui passent en dessous */
+		.table thead th {
 			background-color: #ffffff !important;
-			z-index: 15;
 			box-shadow: inset 0 -1px 0 #e0e0e0;
+			vertical-align: middle;
 		}
 
-		/* Rend les inputs de filtres fixes */
+		/* Supprime tout espace ou décalage avec la ligne des filtres */
 		.search-row th {
-			position: sticky;
-			top: 95px; /* Placé juste sous la ligne d'en-tête */
 			background-color: #fdfdfd !important;
 			padding: 6px !important;
-			z-index: 15;
-			box-shadow: inset 0 -1px 0 #e0e0e0;
+			border-top: none !important;
 		}
 
 		/* --- STYLES DES FILTRES DE LA TABLE --- */
@@ -330,8 +323,7 @@
 </head>
 <body>
 
-<div class="rectangle-haut {% if est_responsable_stock %}bg-stock_manager{% elif est_reader %}bg-reader{% else %}bg-visitor{% endif %}">
-		
+	<div class="rectangle-haut {% if est_responsable_stock %}bg-stock_manager{% elif est_reader %}bg-reader{% else %}bg-visitor{% endif %}">
 		<h2>Stock Component</h2>
 
 		<div class="auth-container">
@@ -349,7 +341,6 @@
     <div class="container-fluid d-flex gap-4 px-4">
         
         <div class="d-flex flex-column gap-3" style="width: 280px; min-width: 280px;">
-            
             <div class="mouser-sidebar w-100" style="box-sizing: border-box;">
                 <ul class="category-list">
                     {% for category in categories %}
@@ -383,124 +374,134 @@
                     <strong>Description :</strong> Stock management system for the school’s electronic components. This site allows you to monitor availability and access information quickly.
                 </p>
             </div>
-
         </div> 
-        <div class="flex-grow-1 table-responsive">
-            <div class="d-flex justify-content-between align-items-start mb-4">
 
-   
+        <div class="flex-grow-1 d-flex flex-column right-content-column" style="height: 100%; overflow: hidden;">
+            
+            <div class="d-flex justify-content-between align-items-start mb-4 flex-shrink-0">
                 <div>
                     <h1 class="m-0" style="font-size: 2.5rem; font-weight: 500;">Available Components</h1>
                     <h3 id="current-filter-title" class="text-muted mt-1" style="font-size: 1.3rem; font-weight: 400; display: none;">
                         Filter : <span class="badge bg-secondary" id="filter-name-display"></span>
                     </h3>
                 </div>
-                <div>
-                    <a href="{% url 'export_components_csv' %}" class="btn btn-secondary d-flex align-items-center gap-2">
-                        📄 Export to CSV (.csv)
-                    </a>
-                </div>
+				<div class="d-flex gap-2">
+					{% if perms.rfid_reader_app.can_add_component %}
+						<a href="{% url 'add_component' %}" class="btn btn-secondary d-flex align-items-center gap-2">
+							⭕ Add component
+						</a>
+					{% endif %}
+					
+					<a href="{% url 'export_components_csv' %}" class="btn btn-secondary d-flex align-items-center gap-2">
+						📄 Export to CSV (.csv)
+					</a>
+				</div>
             </div>
 
-            <table class="table table-striped align-middle bg-white rounded shadow-sm" id="componentTable">
-                <thead>
-                    <tr>
-                        <th>Datasheet</th>
-                        <th>Category</th>
-                        <th>Subcategory</th>
-                        <th>MPN</th>
-                        <th>SPN</th>
-                        <th>Quantity</th>
-                        <th>Features</th>
-                        <th>SMD/THT</th>
-                        <th>Package</th>
-                        <th>Unit Price HT (Euro€)</th>
-                        <th>+ Infos</th>
-                    </tr>
-                    <tr class="search-row">
-                        <th></th>
-                        <th></th>
-                         <th></th>
-                        <th><input type="text" class="search-input" data-col="3" placeholder="Filtrer..."></th>
-                        <th><input type="text" class="search-input" data-col="4" placeholder="Filtrer..."></th>
-                        <th><input type="text" class="search-input" data-col="5" placeholder="Filtrer..."></th>
-                        <th><input type="text" class="search-input" data-col="6" placeholder="Filtrer..."></th>
-                        <th>
-                            <select class="search-select" data-col="7">
-                                <option value="">All</option>
-                                <option value="smd">SMD</option>
-                                <option value="tht">THT</option>
-                            </select>
-                        </th>
-                        <th><input type="text" class="search-input" data-col="8" placeholder="Filtrer..."></th>
-                        <th><input type="text" class="search-input" data-col="9" placeholder="Filtrer..."></th>
-                        <th></th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for component in components %}
-                    <tr>
-                        <td>
-                            {% if component.datasheet_url %}
-                                <a href="{{ component.datasheet_url }}" target="_blank" style="color: #007bff; text-decoration: underline;">
-                                    Available
+            <div class="table-scroll-wrapper">
+                <table class="table table-striped align-middle bg-white rounded shadow-sm" id="componentTable">
+                    <thead>
+                        <tr>
+                            <th>Datasheet</th>
+                            <th>Category</th>
+                            <th>Subcategory</th>
+                            <th>MPN</th>
+                            <th>SPN</th>
+                            <th>Quantity</th>
+                            <th>Features</th>
+                            <th>SMD/THT</th>
+                            <th>Package</th>
+                            <th>Unit Price HT (Euro€)</th>
+                            <th>+ Infos</th>
+                        </tr>
+                        <tr class="search-row">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th><input type="text" class="search-input" data-col="3" placeholder="Filtrer..."></th>
+                            <th><input type="text" class="search-input" data-col="4" placeholder="Filtrer..."></th>
+                            <th><input type="text" class="search-input" data-col="5" placeholder="Filtrer..."></th>
+                            <th><input type="text" class="search-input" data-col="6" placeholder="Filtrer..."></th>
+                            <th>
+                                <select class="search-select" data-col="7">
+                                    <option value="">All</option>
+                                    <option value="smd">SMD</option>
+                                    <option value="tht">THT</option>
+                                </select>
+                            </th>
+                            <th><input type="text" class="search-input" data-col="8" placeholder="Filtrer..."></th>
+                            <th><input type="text" class="search-input" data-col="9" placeholder="Filtrer..."></th>
+                            <th></th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for component in components %}
+                        <tr>
+                            <td>
+                                {% if component.datasheet_url %}
+                                    <a href="{{ component.datasheet_url }}" target="_blank" style="color: #007bff; text-decoration: underline;">
+                                        Available
+                                    </a>
+                                {% elif mouser_data.datasheet %}
+                                    <a href="{{ mouser_data.datasheet }}" target="_blank" style="color: #007bff; text-decoration: underline;">
+                                        Available
+                                    </a>
+                                {% else %}
+                                    <span style="color: #888; font-style: italic;">Not Available</span>
+                                {% endif %}
+                            </td>
+                            
+                            <td>{{ component.category.name|default:"—" }}</td>
+                            <td>{{ component.subcategory.name|default:"—" }}</td>
+                            <td>{{ component.mpn }}</td>
+                            <td>{{ component.spn|default:"—" }}</td>
+                            
+                            <td>
+                                {% if perms.rfid_reader_app.change_component_quantity %}
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <input type="number" 
+                                               value="{{ component.quantity }}" 
+                                               min="0"
+                                               class="form-control form-control-sm text-center fw-bold stock-input"
+                                               onchange="directUpdateQuantity('{{ component.id }}', this.value)"
+                                               onkeypress="if(event.key === 'Enter') directUpdateQuantity('{{ component.id }}', this.value)">
+                                    </div>
+                                {% else %}
+                                    <span class="text-muted">{{ component.quantity }}</span>
+                                {% endif %}
+                            </td>
+                            
+                            <td>
+                                <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
+                                    {% for comp_criteria in component.criterias.all %}
+                                        <li>
+                                            <strong>{{ comp_criteria.criteria.criteria }} :</strong> 
+                                            {{ comp_criteria.value }} 
+                                            {% if comp_criteria.criteria.unit %}
+                                                {{ comp_criteria.criteria.unit }}
+                                            {% endif %}
+                                        </li>
+                                    {% empty %}
+                                        <li style="color: #888; font-style: italic;">No criteria</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            
+                            <td>{{ component.smd_or_tht }}</td>
+                            <td>{{ component.package.dimension|default:"—" }}</td>
+                            <td>{{ component.unit_price_ht|default:"0.00" }}</td>
+                          
+                            <td>
+                                <a href="{% url 'component_detail' component.id %}" class="btn btn-sm btn-primary">
+                                    Open
                                 </a>
-                            {% elif mouser_data.datasheet %}
-                                <a href="{{ mouser_data.datasheet }}" target="_blank" style="color: #007bff; text-decoration: underline;">
-                                    Available
-                                </a>
-                            {% else %}
-                                <span style="color: #888; font-style: italic;">Not Available</span>
-                            {% endif %}
-                        </td>
-                        <td>{{ component.category.name|default:"—" }}</td>
-                        <td>{{ component.subcategory.name|default:"—" }}</td>
-                        <td>{{ component.mpn }}</td>
-                        <td>{{ component.spn|default:"—" }}</td>
-						<td>
-							{% if perms.rfid_reader_app.change_component_quantity %}
-								<div class="d-flex align-items-center justify-content-center">
-									<input type="number" 
-										   value="{{ component.quantity }}" 
-										   min="0"
-										   class="form-control form-control-sm text-center fw-bold stock-input"
-										   onchange="directUpdateQuantity('{{ component.id }}', this.value)"
-										   onkeypress="if(event.key === 'Enter') directUpdateQuantity('{{ component.id }}', this.value)">
-								</div>
-							{% else %}
-								<span class="text-muted">{{ component.quantity }}</span>
-							{% endif %}
-						</td>
-                        <td>
-                            <ul style="list-style-type: none; padding-left: 0; margin: 0; font-size: 12px;">
-                                {% for comp_criteria in component.criterias.all %}
-                                    <li>
-                                        <strong>{{ comp_criteria.criteria.criteria }} :</strong> 
-                                        {{ comp_criteria.value }} 
-                                        {% if comp_criteria.criteria.unit %}
-                                            {{ comp_criteria.criteria.unit }}
-                                        {% endif %}
-                                    </li>
-                                {% empty %}
-                                    <li style="color: #888; font-style: italic;">No criteria</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                        
-                        <td>{{ component.smd_or_tht }}</td>
-                        <td>{{ component.package.dimension|default:"—" }}</td>
-                        <td>{{ component.unit_price_ht|default:"0.00" }}</td>
-                      
-                        <td>
-                            <a href="{% url 'component_detail' component.id %}" class="btn btn-sm btn-primary">
-                                Open
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        </div> 
     </div>
 
     <script>
@@ -512,18 +513,15 @@
             const inputs = document.querySelectorAll(".search-input");
             const selects = document.querySelectorAll(".search-select");
             
-            // Éléments du sous-titre dynamique
             const filterTitleContainer = document.getElementById("current-filter-title");
             const filterNameDisplay = document.getElementById("filter-name-display");
 
-            // Variable globale stockant le filtre de sous-catégorie actuel
             let activeSubcategoryFilter = "";
 
             function filterTable() {
                 for (let row of rows) {
                     let shouldDisplay = true;
 
-                    // 1. Filtrage par la barre latérale (Sous-catégorie - Colonne Index 2)
                     if (activeSubcategoryFilter) {
                         const subcatCell = row.cells[2];
                         const subcatText = subcatCell ? subcatCell.textContent.toLowerCase().trim() : "";
@@ -532,7 +530,6 @@
                         }
                     }
 
-                    // 2. Filtrage via les champs de texte existants (MPN, SPN, etc.)
                     inputs.forEach(input => {
                         const colIndex = parseInt(input.getAttribute("data-col"));
                         const filterValue = input.value.toLowerCase().trim();
@@ -546,7 +543,6 @@
                         }
                     });
 
-                    // 3. Filtrage via les menus déroulants restants (ex: THT/SMD)
                     selects.forEach(select => {
                         const colIndex = parseInt(select.getAttribute("data-col"));
                         const filterValue = select.value.toLowerCase().trim();
@@ -564,44 +560,32 @@
                 }
             }
 
-            // Gestionnaire de clic sur une sous-catégorie
             document.querySelectorAll(".filter-trigger").forEach(link => {
                 link.addEventListener("click", function(e) {
                     e.preventDefault();
-                    
-                    // Récupérer le nom propre et la version normalisée pour le filtrage
                     const selectedSubcatLabel = this.textContent.trim();
                     activeSubcategoryFilter = this.getAttribute("data-subcategory");
 
-                    // Mettre à jour et afficher le sous-titre dynamique
                     filterNameDisplay.textContent = selectedSubcatLabel;
                     filterTitleContainer.style.display = "block";
 
-                    // Appliquer le filtre global
                     filterTable();
                 });
             });
 
-            // Gestionnaire pour réinitialiser le filtre (clic sur une catégorie principale)
             document.querySelectorAll(".reset-category-filter").forEach(link => {
                 link.addEventListener("click", function(e) {
                     e.preventDefault();
-                    
-                    // On vide le filtre et on cache le sous-titre
                     activeSubcategoryFilter = "";
                     filterTitleContainer.style.display = "none";
-                    
-                    // Appliquer le filtre global (tout réafficher)
                     filterTable();
                 });
             });
 
-            // Événements pour les entrées clavier des filtres classiques du tableau
             inputs.forEach(input => {
                 input.addEventListener("keyup", filterTable);
             });
 
-            // Événements pour les sélections des menus déroulants du tableau
             selects.forEach(select => {
                 select.addEventListener("change", filterTable);
             });
@@ -610,22 +594,18 @@
     
     <script>
 	function directUpdateQuantity(componentId, newValue) {
-		// Évite les valeurs négatives absurdes
 		if (newValue < 0 || newValue === "") {
 			newValue = 0;
 		}
-		// Redirige vers la vue Django avec l'action 'set' et la nouvelle valeur
 		window.location.href = `/component/${componentId}/set/?value=${newValue}`;
 	}
 	</script>
 
 	<style>
-	/* Petit ajustement CSS pour que le champ input ne soit pas trop large */
 	.stock-input {
 		width: 80px !important;
 		padding: 2px 5px;
 		display: inline-block;
-
 	}
 	</style>
 </body>

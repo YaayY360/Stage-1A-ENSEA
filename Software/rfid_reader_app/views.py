@@ -3,6 +3,7 @@ from django.shortcuts import render,get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Category, Subcategory, Criteria, CriteriaSubcategory, Package, Component, ComponentCriteria, Tiroclass,Drawer,Position
 from .APIs.mouser_api import get_component_info
+from .forms import ComponentForm
 from django.contrib.auth.decorators import login_required, permission_required
 
 @login_required
@@ -137,3 +138,16 @@ def homepage(request):
     
     # Sinon, on lui montre la page de garde avec le bouton
     return render(request, 'homepage.html')
+
+@permission_required('rfid_reader_app.can_add_component', raise_exception=True)
+def add_component_view(request):
+    if request.method == 'POST':
+        form = ComponentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('component_list')  # Remplace par le nom de ta page de liste/stock
+    else:
+        form = ComponentForm()
+        
+    return render(request, 'add_component.html', {'form': form})
+

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENSEA Stock — Ajouter un composant</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        html, body {
+			min-height: 100vh;
+			margin: 0;
+			padding: 0;
+			background-color: #f8f9fa;
+			display: flex;
+			flex-direction: column;
+		}
+
+        /* --- BANDEAU BORDEAUX ENSEA (Identique à l'accueil) --- */
+        .rectangle-haut {
+            width: 100%;
+            height: 150px;
+            min-height: 150px;
+            background-color: #a71850; 
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+
+        .rectangle-haut .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .auth-container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 30px;
+            z-index: 100;
+        }
+
+        .user-logged {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .username-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        /* --- CONFIGURATION DU FORMULAIRE ERGONOMIQUE --- */
+        .form-container {
+            flex-grow: 1;
+            padding: 40px 20px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .card-custom {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        /* Amélioration visuelle des champs de saisie */
+        .form-label {
+            font-weight: 600;
+            color: #4A5568;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #a71850;
+            box-shadow: 0 0 0 3px rgba(167, 24, 80, 0.15);
+            outline: 0;
+        }
+
+        /* Boutons d'action */
+        .btn-submit {
+            background-color: #a71850;
+            color: white;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #85123e;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-cancel {
+            background-color: #f1f3f5;
+            color: #495057;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: 1px solid #ced4da;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-cancel:hover {
+            background-color: #e2e6ea;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rectangle-haut">
+        <h2>Stock Component</h2>
+        
+
+        <div class="auth-container">
+            {% if user.is_authenticated %}
+                <div class="user-logged">
+                    <span class="username-text">👤 {{ user.username }}</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="card-custom">
+            <div class="d-flex align-items-center gap-2 mb-4 pb-2 border-bottom">
+                <span style="font-size: 24px;">➕</span>
+                <h4 class="m-0" style="color: #333; font-weight: 500;">New Component</h4>
+            </div>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+                
+                <div class="row g-4">
+                    {% for field in form %}
+                        <div class="{% if 'url' in field.name|lower or 'description' in field.name|lower or 'criteria' in field.name|lower %}col-12{% else %}col-md-6{% endif %}">
+                            <label for="{{ field.id_for_label }}" class="form-label">
+                                {{ field.label }} {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                            </label>
+                            
+                            {{ field }}
+                            
+                            {% if field.help_text %}
+                                <div class="form-text text-muted" style="font-size: 12px;">{{ field.help_text }}</div>
+                            {% endif %}
+                            
+                            {% for error in field.errors %}
+                                <div class="text-danger small mt-1 fw-bold" style="font-size: 12px;">⚠️ {{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="d-flex justify-content-end gap-3 mt-5 pt-3 border-top">
+                    <a href="{% url 'component_list' %}" class="btn-cancel">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn-submit shadow-sm">
+                        💾 Save component
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.classList.add('form-check-input');
+                } else if (input.tagName === 'SELECT') {
+                    input.classList.add('form-select');
+                } else {
+                    input.classList.add('form-control');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

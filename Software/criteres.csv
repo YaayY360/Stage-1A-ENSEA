@@ -1,0 +1,53 @@
+Category,Subcategory,Technical criteria
+CircuitProtection,ESD_TVS,Withstand voltage (V) | Clamping voltage (V) | Peak power (W) | Parasitic capacitance (pF) | Package
+CircuitProtection,fuseHolders,"Fuse type (5x20mm, ATC...) | Max current (A) | Max voltage (V) | Mounting (PCB, panel)"
+CircuitProtection,fuses,"Nominal current (A) | Nominal voltage (V) | Breaking capacity (kA) | Type (fast-acting, time-delay)"
+Connector,Dupont,"Number of pins | Pitch (mm) | Gender (male/female) | Current per pin (A) | Max voltage (V) | Mounting (through-hole, SMD)"
+Connector,JST,"Number of pins | Pitch (mm) | Gender (male/female) | Current per pin (A) | Max voltage (V) | Mounting (through-hole, SMD)"
+Connector,powerJacks,"Number of pins | Pitch (mm) | Gender (male/female) | Current per pin (A) | Max voltage (V) | Mounting (through-hole, SMD)"
+Connector,pinHeader_pinSocket,"Number of pins | Pitch (mm) | Gender (male/female) | Current per pin (A) | Max voltage (V) | Mounting (through-hole, SMD)"
+Electromechanical,motors,"Type (DC, stepper, servo) | Nominal voltage (V) | Nominal current (A) | Torque (Nm or kg.cm) | Speed (RPM) | Step angle (for stepper)"
+Electromechanical,relays,"Coil voltage (V) | Coil current (mA) | Max switching voltage (V) | Max switching current (A) | Number of poles (SPDT, DPDT...)"
+EmbeddedSolutions,computing,"Processor | Frequency (MHz) | RAM (GB) | Storage (Flash/eMMC) | Number of GPIOs | Interfaces (USB, HDMI, Ethernet)"
+EmbeddedSolutions,developmentKits,"Microcontroller (model) | Logic voltage (3.3V/5V) | Interfaces (I2C, SPI, UART) | Onboard connectors"
+EmbeddedSolutions,sensorModules,Integrated sensor type | Interface (I2C/SPI/Analog) | Supply voltage (V) | Measurement range | Resolution
+EmbeddedSolutions,communicationRF,"Protocol (LoRa, Zigbee, WiFi, BLE) | Frequency (MHz) | Output power (dBm) | Sensitivity (dBm) | Antenna (integrated/external)"
+PassiveComponents,capacitors,"Capacitance (µF/pF) | Nominal voltage (V) | Dielectric (X7R, C0G, electrolytic) | Tolerance (%) | ESR (Ω)"
+PassiveComponents,inductors,Inductance (µH/mH) | Saturation current (A) | DC Resistance (DCR) (Ω) | Resonant frequency (MHz)
+PassiveComponents,potentiometers,"Resistance (Ω) | Type (linear, logarithmic) | Number of turns | Tolerance (%)"
+PassiveComponents,resistors,Resistance (Ω) | Power (W) | Tolerance (%) | Temperature coefficient (ppm/°C)
+PassiveComponents,signalTransformers,Turns ratio | Primary inductance (µH) | Frequency range (Hz)
+PassiveComponents,quartz,Frequency (MHz) | Load capacitance (pF) | Frequency tolerance (ppm) | ESR (Ω)
+Power,AC-DC_Converters,Input voltage (V AC) | Output voltage (V DC) | Output current (A) | Power (W) | Efficiency (%) | Isolation (yes/no)
+Power,DC-DC_Converters,Min/Max input voltage (V) | Output voltage (V) | Output current (A) | Efficiency (%) | Switching frequency (kHz)
+Semiconductors,diodes,"Max repetitive reverse voltage (Vrrm) | Average forward current (If) | Forward voltage (Vf) | Type (Schottky, fast, Zener - specify Vz)"
+Semiconductors,embeddedProcessors,"Architecture (ARM, AVR, RISC-V) | Max frequency (MHz) | Flash (KB/MB) | RAM (KB/MB) | Number of pins / GPIOs"
+Semiconductors,integratedCircuits,"Main function (e.g., logic, timer) | Supply voltage (V) | Package (DIP, SOIC, QFN) | Quiescent current"
+Semiconductors,memoryICs,"Type (EEPROM, SRAM, Flash, FRAM) | Capacity (KB/MB) | Interface (I2C, SPI, Parallel) | Voltage (V)"
+Semiconductors,powerManagementICs,"Function (Buck, Boost, LDO, charger) | Input/Output voltage (V) | Max current (A) | Quiescent current"
+Semiconductors,wireless_RFSemiconductors,"Frequency (GHz) | Bandwidth (MHz) | Type (modulator, PA, LNA) | Gain (dB) | Voltage"
+Semiconductors,transistors,"Type (NPN, PNP, N-MOS, P-MOS) | Max Vce/Vds (V) | Max Ic/Id (A) | Vgs(th) (V) | Hfe or Rds(on) (Ω)"
+Semiconductors,gateDriver,Output voltage (V) | Peak current (A) | Number of channels | Rise/Fall time (ns)
+Semiconductors,amplifier,"Type (general purpose, rail-to-rail) | Bandwidth (MHz) | Offset voltage (mV) | Power supply (V)"
+Semiconductors,buffer,Input/Output voltage (V) | Output current (mA) | Propagation delay (ns)
+Semiconductors,gpioExpander,Number of I/Os | Interface (I2C/SPI) | Logic voltage (V) | Mode (input/output)
+Semiconductors,ledDriver,"Number of channels | Current per channel (mA) | Supply voltage (V) | Control interface (PWM, I2C)"
+Semiconductors,transceiverRF,Frequency (GHz) | Bit rate (Mbps) | Modulation | TX power (dBm) | RX sensitivity (dBm)
+Semiconductors,transceiverEth,Standard (10/100/1000 Mbps) | MII/RMII/RGMII interface | Voltage (V) | Temperature
+Semiconductors,motorDriver,Supply voltage (V) | Max continuous current (A) | Peak current (A) | Number of motors/H-bridges | Control logic
+Sensors,audio,Sensitivity (dBV/Pa) | Bandwidth (Hz) | Signal-to-noise ratio (SNR) (dB) | Impedance (Ω)
+Sensors,current,"Type (Hall, shunt) | Current range (A) | Sensitivity (mV/A) | Output (analog, digital)"
+Sensors,encoders,"Type (incremental, absolute) | Resolution (PPR / bits) | Output (A, B, Z or SPI) | Voltage"
+Sensors,magnetic,Measurement range (Gauss/mT) | Resolution | Interface (I2C/SPI) | Voltage
+Sensors,pressure,"Pressure range (bar/Pa) | Accuracy (%) | Output type (analog, I2C, SPI)"
+Sensors,proximity,"Detection distance (mm) | Technology (inductive, capacitive, optical) | Output (NPN, PNP, digital)"
+Sensors,temperature,"Measurement range (°C) | Accuracy (±°C) | Interface (analog, OneWire, I2C) | Voltage"
+Sensors,IMU,"Axes (6/9 axes) | Measurement range (g, °/s) | Interface (I2C/SPI) | Voltage | Data rate"
+ThermalManagement,fans,Voltage (V) | Current (A) | Airflow (CFM) | Noise (dBA) | Speed (RPM) | Bearing type (ball/sleeve)
+ThermalManagement,heatSinks,"Thermal resistance (°C/W) | Material (Alu, Copper) | Dimensions (L x W x H in mm) | Mounting type (adhesive, clips)"
+WireCables,cableAssemblies,Length (cm/m) | End connectors | Number of conductors | Wire type (AWG)
+WireCables,multiConductorCables,"Cross-section (AWG or mm²) | Number of conductors | Insulation (PVC, silicone) | Max voltage (V)"
+Tools,soldering,"Type (soldering iron, hot air station) | Power (W) | Temperature range (°C) | Tip type"
+Optoelectronic,LED,Color (and wavelength in nm) | Forward voltage (Vf) | Luminous intensity (mcd) | Viewing angle (°) | Power (W)
+Optoelectronic,IR,Wavelength (nm) | Forward voltage (V) | Viewing angle | Range (m)
+Optoelectronic,phototransistor,Peak wavelength (nm) | Sensitivity (µA/lux) | Collector-emitter voltage (V) | Dark current (µA)

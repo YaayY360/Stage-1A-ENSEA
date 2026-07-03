@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from rfid_reader_app.views import component_list, component_detail, export_components_csv, homepage, update_quantity
+from rfid_reader_app.views import component_list, component_detail, export_components_csv, homepage, update_quantity, add_component_view
 import django_cas_ng.views  # <-- Importe les vues du CAS
 
 urlpatterns = [
@@ -30,4 +30,5 @@ urlpatterns = [
     path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
     path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
     path('component/<int:component_id>/<str:action>/', update_quantity, name='update_quantity'),
+    path('component/add/', add_component_view, name='add_component'),
 ]
